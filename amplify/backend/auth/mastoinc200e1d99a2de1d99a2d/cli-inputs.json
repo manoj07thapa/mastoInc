@@ -1,0 +1,59 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "mastoinc200e1d99a2d_identitypool_e1d99a2d",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "mastoie1d99a2d",
+    "userPoolName": "mastoinc200e1d99a2d_userpool_e1d99a2d",
+    "autoVerifiedAttributes": [
+      "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+      "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+      "email",
+      "name",
+      "phone_number"
+    ],
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientLambdaRole": "mastoie1d99a2d_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "sharedId": "e1d99a2d",
+    "resourceName": "mastoinc200e1d99a2de1d99a2d",
+    "authSelections": "identityPoolAndUserPool",
+    "useDefault": "manual",
+    "thirdPartyAuth": false,
+    "usernameAttributes": [
+      "email"
+    ],
+    "userPoolGroups": true,
+    "adminQueries": true,
+    "triggers": {},
+    "hostedUI": false,
+    "userPoolGroupList": [
+      "admin",
+      "teacher"
+    ],
+    "adminQueryGroup": "admin",
+    "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": true
+  }
+}

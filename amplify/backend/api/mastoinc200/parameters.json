@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "mastoinc200",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmastoinc200e1d99a2de1d99a2d",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

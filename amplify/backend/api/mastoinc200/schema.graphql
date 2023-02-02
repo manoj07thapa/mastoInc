@@ -1,0 +1,36 @@
+type Course
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: groups, groups: ["admin"] }
+      { allow: groups, groups: ["teacher"], operations: [read, create, update] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+      # { allow: owner, ownerField: "tutor", operations: [read, create] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  subtitle: String
+  category: String!
+  files: [String]
+  price: Float!
+  language: String!
+  tutor: String!
+  tutorWho: String!
+  relatedSkills: [String!]
+  youLearn: [String!]
+  duration: String!
+  framework: String!
+  reqKnowledge: String!
+  level: String!
+  time: String!
+  courseContent: [Syllabus]
+  # enrollees: [User] @manyToMany(relationName: "UserCourses")
+}
+
+type Syllabus {
+  topic: String
+  description: String
+  duration: String
+}
