@@ -25,6 +25,12 @@
       "api": {
         "AdminQueries": {},
         "mastoinc200": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3rsccfsa3srjt",
+          "type": "cicd"
+        }
       }
     }
   }
