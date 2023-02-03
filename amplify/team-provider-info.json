@@ -13,7 +13,24 @@
     },
     "categories": {
       "auth": {
-        "mastoinc20083a449cd83a449cd": {}
+        "mastoinc20083a449cd83a449cd": {},
+        "userPoolGroups": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dnoxgupb7w4gp",
+          "type": "cicd"
+        }
+      },
+      "function": {
+        "AdminQueriesb346452f": {
+          "deploymentBucketName": "amplify-mastoinc200-dev-195827-deployment",
+          "s3Key": "amplify-builds/AdminQueriesb346452f-77566d6279786c6e2b47-build.zip"
+        }
+      },
+      "api": {
+        "AdminQueries": {},
+        "mastoinc200": {}
       }
     }
   }

@@ -6,7 +6,7 @@ type Course
       { allow: groups, groups: ["admin"] }
       { allow: groups, groups: ["teacher"], operations: [read, create, update] }
       { allow: private, operations: [read] }
-      { allow: public, operations: [read] }
+      { allow: public, operations: [read], provider: iam }
     ]
   ) {
   id: ID!
