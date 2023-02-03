@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, FormikHelpers } from "formik";
 import { Auth } from "aws-amplify";
 import Link from "next/link";
 import Head from "next/head";
@@ -7,20 +7,26 @@ import { useRouter } from "next/router";
 import { loginSchema } from "../../validations/auth/loginSchema";
 import { UserContext } from "../../contexts/UserContext";
 
+type SignInProps = {
+    email: string,
+    password: string
+
+}
+
 function SignIn() {
     const router = useRouter();
     const userContext = useContext(UserContext);
 
-    const initialValues = {
-        username: "",
+    const initialValues: SignInProps = {
+        email: "",
         password: "",
     };
 
-    const onSubmit = async (values: any, actions: any) => {
-        const { username, password } = values;
+    const onSubmit = async (values: SignInProps, { setErrors }: FormikHelpers<SignInProps>) => {
+        const { email, password } = values;
         try {
             const user = await Auth.signIn({
-                username,
+                username: email,
                 password,
             });
             console.log('USER', user);
@@ -31,7 +37,7 @@ function SignIn() {
             console.log('LOGINERROR', error);
 
             if (error) {
-                actions.setErrors(error); //toDO: backend validation
+                setErrors(error); //toDO: backend validation use toast 
             }
         }
     };
@@ -62,19 +68,19 @@ function SignIn() {
                                     <Form className="space-y-5 ">
                                         <div>
                                             <label
-                                                htmlFor="username "
+                                                htmlFor="email "
                                                 className="mb-1 block text-sm font-medium tracking-wide text-slate-200"
                                             >
-                                                User Name
+                                                Email
                                             </label>
                                             <Field
-                                                name="username"
-                                                type="text"
+                                                name="email"
+                                                type="email"
                                                 id="username"
-                                                className={`w-full rounded-md bg-violet-100 text-lg font-medium ${errors.username && "ring-2 ring-offset-1 ring-red-500"}`}
+                                                className={`w-full rounded-md bg-violet-100 text-lg font-medium ${errors.email && "ring-2 ring-offset-1 ring-red-500"}`}
                                             />
                                             <div className="mt-1 text-xs text-red-500">
-                                                {errors.username && errors.username}
+                                                {errors.email && errors.email}
                                             </div>
                                         </div>
                                         <div className="">
@@ -96,7 +102,7 @@ function SignIn() {
                                         </div>
                                         <div className="mt-4 flex items-center justify-between">
                                             <div className="text-sm">
-                                                <Link href="/auth/forgotPassword" className="font-medium text-indigo-500 hover:text-indigo-600">
+                                                <Link href="/auth/forgotpassword" className="font-medium text-indigo-500 hover:text-indigo-600">
                                                     Forgot your password?
 
                                                 </Link>

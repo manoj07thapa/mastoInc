@@ -1,20 +1,27 @@
 import React from "react";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { registerSchema } from "../../validations/auth/registerSchema";
 
+type SignUpProps = {
+    fullname: string,
+    email: string,
+    password: string,
+    phoneNumber: string
+}
+
 function SignUp() {
     const router = useRouter();
-    const initialValues = {
+    const initialValues: SignUpProps = {
         fullname: "",
         email: "",
         password: "",
-        phoneNumber: 977,
+        phoneNumber: "+977",
     };
 
-    const onSubmit = async (values: any, actions: any) => {
+    const onSubmit = async (values: SignUpProps, { setErrors }: FormikHelpers<SignUpProps>) => {
 
         const { email, password, phoneNumber, fullname } = values;
         console.log('VALUES', values);
@@ -31,12 +38,12 @@ function SignUp() {
             });
             console.log('SIGNUPUSER', user);
 
-            router.push("/auth/confirmUser");
+            router.push("/auth/userconfirmation");
         } catch (error) {
             console.log('ERROR', error);
 
             if (error) {
-                actions.setErrors(error); //toDO: backend validation
+                setErrors(error); //toDO: backend validation
             }
         }
     };

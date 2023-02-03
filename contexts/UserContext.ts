@@ -18,6 +18,6 @@ type UserContextProps = {
 
 
 
-export const UserContext = createContext<UserContextProps | null>({} as UserContextProps);
+export const UserContext = createContext({} as UserContextProps);
 
 

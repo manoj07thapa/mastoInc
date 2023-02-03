@@ -23,7 +23,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
   const [user, setUser] = useState<UserProp | null>(null);
-  console.log('USER', user);
 
 
   useEffect(() => {
@@ -32,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
       setUser(user);
     }
     authListner();
-  }, [setUser]);
+  }, [setUser, user]);
 
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (

@@ -17,7 +17,15 @@ function classNames(...classes: string[]) {
 }
 
 const UserMenu = () => {
-    const userContext = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    // console.log('Context', userContext.user);
+    const handleSignOut = async () => {
+
+        await Auth.signOut()
+        setUser(null)
+        router.push("/auth/login")
+
+    }
 
     // const group = userContext?.user?.signInUserSession?.accessToken.payload["cognito:groups"];
     const router = useRouter();
@@ -52,42 +60,60 @@ const UserMenu = () => {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg overflow-hidden bg-violet-100 ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                             <div className="text-center py-2  bg-indigo-600  flex items-center pl-4 space-x-4">
                                 <LockClosedIcon className="h-4 w-4 text-white" />
-                                <p className="uppercase tracking-wider ">{userContext?.user?.attributes?.name}</p>
+                                <p className="uppercase tracking-wider ">{user?.attributes?.name}</p>
                             </div>
 
                             <Menu.Item>
                                 {({ active }) => (
-                                    <Link href="/dashboard">
-                                        <div className="flex space-x-4">
+                                    <Link href="/dashboard" >
+                                        <div className="flex space-x-4" >
                                             <CpuChipIcon className="h-4 w-4 text-pink-600" />
-                                            <p>Dashboard</p>
+                                            <p className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}>
+                                                Dashboard
+                                            </p>
                                         </div>
                                     </Link>
                                 )}
                             </Menu.Item>
-
-                            <Menu.Item>
+                            <Menu.Item >
                                 {({ active }) => (
-                                    <div>
-                                        <button
-                                            type="submit"
-                                            className={classNames(
-                                                active ? "bg-gray-100" : "",
-                                                " px-4 py-2 text-sm text-gray-700 w-full text-left flex space-x-4"
-                                            )}
-                                            onClick={() => {
-                                                Auth.signOut();
-                                                router.push("/");
-                                                userContext?.setUser(null);
-                                            }}
-                                        >
+                                    <button
+                                        className={classNames(
+                                            active ? "bg-gray-100" : "",
+                                            " px-4 py-2 text-sm text-gray-700 w-full text-left flex space-x-4"
+                                        )}
+                                        onClick={handleSignOut}
+                                    >
+                                        <div className="flex space-x-3 items-center">
                                             <ShareIcon className="h-4 w-4 text-pink-600" />
-
                                             <p>Signout</p>
-                                        </button>
-                                    </div>
+                                        </div>
+                                    </button>
                                 )}
                             </Menu.Item>
+
+                            {/* <Menu.Item>
+                                {({ active }) => (
+                                    <button
+                                        type="submit"
+                                        className={classNames(
+                                            active ? "bg-gray-100" : "",
+                                            " px-4 py-2 text-sm text-gray-700 w-full text-left flex space-x-4"
+                                        )}
+                                        onClick={() => {
+                                            Auth.signOut();
+                                            userContext?.setUser(null);
+                                            router.push("/auth/login");
+
+                                        }}
+                                    >
+                                        <ShareIcon className="h-4 w-4 text-pink-600" />
+
+                                        <p>Signout</p>
+                                    </button>
+                                )}
+                            </Menu.Item> */}
                         </Menu.Items>
                     </Transition>
                 </Menu>
