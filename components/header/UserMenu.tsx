@@ -17,13 +17,20 @@ function classNames(...classes: string[]) {
 }
 
 const UserMenu = () => {
-    const { user, setUser } = useContext(UserContext);
+    const userContext = useContext(UserContext);
     // console.log('Context', userContext.user);
     const handleSignOut = async () => {
+        try {
+            await Auth.signOut()
+            userContext?.setUser(null)
+            router.push("/auth/login")
 
-        await Auth.signOut()
-        setUser(null)
-        router.push("/auth/login")
+        } catch (error) {
+            console.log('Error signing out');
+
+        }
+
+
 
     }
 
@@ -60,7 +67,7 @@ const UserMenu = () => {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg overflow-hidden bg-violet-100 ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                             <div className="text-center py-2  bg-indigo-600  flex items-center pl-4 space-x-4">
                                 <LockClosedIcon className="h-4 w-4 text-white" />
-                                <p className="uppercase tracking-wider ">{user?.attributes?.name}</p>
+                                <p className="uppercase tracking-wider ">{userContext?.user?.attributes?.name}</p>
                             </div>
 
                             <Menu.Item>
