@@ -7,12 +7,11 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "mastoinc200": {
       "GraphQLAPIEndpointOutput": "string",
-      "GraphQLAPIIdOutput": "string",
-      "GraphQLAPIKeyOutput": "string"
+      "GraphQLAPIIdOutput": "string"
     }
   },
   "auth": {
-    "mastoinc200e1d99a2de1d99a2d": {
+    "mastoinc20083a449cd83a449cd": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "CreatedSNSRole": "string",
@@ -28,7 +27,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "AdminQueriesf69cb00c": {
+    "AdminQueriesb346452f": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

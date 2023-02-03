@@ -1,3 +1,4 @@
+
 type Course
   @model(subscriptions: null)
   @auth(
@@ -6,7 +7,6 @@ type Course
       { allow: groups, groups: ["teacher"], operations: [read, create, update] }
       { allow: private, operations: [read] }
       { allow: public, operations: [read] }
-      # { allow: owner, ownerField: "tutor", operations: [read, create] }
     ]
   ) {
   id: ID!
@@ -26,7 +26,6 @@ type Course
   level: String!
   time: String!
   courseContent: [Syllabus]
-  # enrollees: [User] @manyToMany(relationName: "UserCourses")
 }
 
 type Syllabus {

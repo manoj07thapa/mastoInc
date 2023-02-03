@@ -8,7 +8,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "mastoinc200e1d99a2de1d99a2d"
+          "resourceName": "mastoinc20083a449cd83a449cd"
         },
         {
           "attributes": [
@@ -16,7 +16,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "AdminQueriesf69cb00c"
+          "resourceName": "AdminQueriesb346452f"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -29,7 +29,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "mastoinc200e1d99a2de1d99a2d"
+          "resourceName": "mastoinc20083a449cd83a449cd"
         }
       ],
       "output": {
@@ -38,17 +38,12 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authmastoinc200e1d99a2de1d99a2d"
+                "userPoolId": "authmastoinc20083a449cd83a449cd"
               }
             }
           ],
           "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-02-02T07:31:56.174Z",
-              "apiKeyExpirationDays": 365,
-              "description": "public"
-            },
-            "authenticationType": "API_KEY"
+            "authenticationType": "AWS_IAM"
           }
         }
       },
@@ -57,7 +52,7 @@
     }
   },
   "auth": {
-    "mastoinc200e1d99a2de1d99a2d": {
+    "mastoinc20083a449cd83a449cd": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -95,7 +90,7 @@
             "IdentityPoolId"
           ],
           "category": "auth",
-          "resourceName": "mastoinc200e1d99a2de1d99a2d"
+          "resourceName": "mastoinc20083a449cd83a449cd"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -103,7 +98,7 @@
     }
   },
   "function": {
-    "AdminQueriesf69cb00c": {
+    "AdminQueriesb346452f": {
       "build": true,
       "dependsOn": [
         {
@@ -111,52 +106,11 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "mastoinc200e1d99a2de1d99a2d"
+          "resourceName": "mastoinc20083a449cd83a449cd"
         }
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    }
-  },
-  "hosting": {
-    "amplifyhosting": {
-      "lastPushTimeStamp": "2023-02-02T07:49:05.210Z",
-      "service": "amplifyhosting",
-      "type": "cicd"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_AdminQueriesf69cb00c_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "AdminQueriesf69cb00c"
-        }
-      ]
-    },
-    "AMPLIFY_function_AdminQueriesf69cb00c_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "AdminQueriesf69cb00c"
-        }
-      ]
-    },
-    "AMPLIFY_hosting_amplifyhosting_appId": {
-      "usedBy": [
-        {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
-        }
-      ]
-    },
-    "AMPLIFY_hosting_amplifyhosting_type": {
-      "usedBy": [
-        {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
-        }
-      ]
     }
   }
 }
