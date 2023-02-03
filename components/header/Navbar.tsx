@@ -19,6 +19,20 @@ export default function Navbar() {
     const router = useRouter();
     const userContext = useContext(UserContext);
 
+    const handleSignOut = async (close: () => void) => {
+        try {
+            await Auth.signOut()
+            userContext?.setUser(null)
+            router.push("/auth/login")
+            close()
+
+        } catch (error) {
+            console.log('Error signing out');
+
+        }
+
+    }
+
     return (
         <Popover className=" bg-gray-100 dark:bg-slate-900  sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-30 border-b dark:border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 ">
@@ -197,135 +211,134 @@ export default function Navbar() {
                 </div>
             </div>
             {/**mobile device menu */}
-            <Transition
-                as={Fragment}
-                enter="duration-200 ease-out"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="duration-100 ease-in"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-            >
-                <Popover.Panel
-                    focus
-                    className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden bg-violet-100"
+            <div>
+                <Transition
+                    as={Fragment}
+                    enter="duration-200 ease-out"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="duration-100 ease-in"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
+
                 >
-                    {({ close }) => (
-                        <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5  divide-y-2 divide-gray-50">
-                            <div className="pt-5 pb-6 px-5">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <span className="text-gray-900">WebMolecule</span>
+                    <Popover.Panel
+                        focus
+                        className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden bg-violet-100"
+                    >
+                        {({ close }) => (
+                            <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5  divide-y-2 divide-gray-50">
+                                <div className="pt-5 pb-6 px-5">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <span className="text-gray-900">WebMolecule</span>
+                                        </div>
+                                        <div className="-mr-2">
+                                            <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                                <span className="sr-only">Close menu</span>
+                                                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                            </Popover.Button>
+                                        </div>
                                     </div>
-                                    <div className="-mr-2">
-                                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                                            <span className="sr-only">Close menu</span>
-                                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                                        </Popover.Button>
+                                    <div className="mt-6">
+                                        <h4 className="text-md font-semibold text-gray-600 tracking-wide pb-6">
+                                            Solutions
+                                        </h4>
+                                        <nav className="grid gap-y-8">
+                                            {solutions.map((item) => (
+                                                <button
+                                                    key={item.name}
+                                                    onClick={() => {
+                                                        router.push(`/solutions/${item.href}`), close();
+                                                    }}
+                                                    className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-100 transition ease-in-out"
+                                                >
+                                                    <item.icon
+                                                        className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                                                        aria-hidden="true"
+                                                    />
+                                                    <span className="ml-3 text-base font-medium text-gray-900">
+                                                        {item.name}
+                                                    </span>
+                                                </button>
+                                            ))}
+                                        </nav>
                                     </div>
                                 </div>
-                                <div className="mt-6">
-                                    <h4 className="text-md font-semibold text-gray-600 tracking-wide pb-6">
-                                        Solutions
+                                <div className=" px-5 space-y-3 mt-3 py-6">
+                                    <h4 className="text-md font-semibold text-gray-600 tracking-wide ">
+                                        Courses
                                     </h4>
-                                    <nav className="grid gap-y-8">
-                                        {solutions.map((item) => (
+                                    <div className="grid grid-cols-2 gap-y-2 gap-x-8 ">
+                                        {courses.map((item) => (
                                             <button
                                                 key={item.name}
                                                 onClick={() => {
-                                                    router.push(`/solutions/${item.href}`), close();
+                                                    router.push(`/courses/${item.href}`), close();
                                                 }}
-                                                className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-100 transition ease-in-out"
+                                                className="transition ease-in-out text-base font-medium text-gray-900 hover:text-gray-700  py-3  items-start flex"
                                             >
-                                                <item.icon
-                                                    className="flex-shrink-0 h-6 w-6 text-indigo-600"
-                                                    aria-hidden="true"
-                                                />
-                                                <span className="ml-3 text-base font-medium text-gray-900">
-                                                    {item.name}
-                                                </span>
+                                                {item.name}
                                             </button>
                                         ))}
-                                    </nav>
-                                </div>
-                            </div>
-                            <div className=" px-5 space-y-3 mt-3 py-6">
-                                <h4 className="text-md font-semibold text-gray-600 tracking-wide ">
-                                    Courses
-                                </h4>
-                                <div className="grid grid-cols-2 gap-y-2 gap-x-8 ">
-                                    {courses.map((item) => (
-                                        <button
-                                            key={item.name}
-                                            onClick={() => {
-                                                router.push(`/courses/${item.href}`), close();
-                                            }}
-                                            className="transition ease-in-out text-base font-medium text-gray-900 hover:text-gray-700  py-3  items-start flex"
-                                        >
-                                            {item.name}
-                                        </button>
-                                    ))}
-                                </div>
-                                <div className="mt-1 mb-1 py-2">
-                                    <button
-                                        onClick={() => {
-                                            router.push(`/contact`), close();
-                                        }}
-                                        className="text-md font-semibold text-gray-600 tracking-wide "
-                                    >
-                                        Contact
-                                    </button>
-                                </div>
-                                {userContext?.user ? (
-                                    <div className="mt-2 space-y-5">
+                                    </div>
+                                    <div className="mt-1 mb-1 py-2">
                                         <button
                                             onClick={() => {
-                                                router.push(`/dashboard`), close();
+                                                router.push(`/contact`), close();
                                             }}
                                             className="text-md font-semibold text-gray-600 tracking-wide "
                                         >
-                                            Dashboard
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                Auth.signOut(),
-                                                    userContext?.setUser(null),
-                                                    router.push("/"),
-                                                    close();
-                                            }}
-                                            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                                        >
-                                            Signout
+                                            Contact
                                         </button>
                                     </div>
-                                ) : (
-                                    <div>
-                                        <button
-                                            onClick={() => {
-                                                router.push("/auth/signUp"), close();
-                                            }}
-                                            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                                        >
-                                            Register
-                                        </button>
-                                        <p className="mt-6 text-center text-base font-medium text-gray-500">
-                                            Existing customer?{" "}
+                                    {userContext?.user ? (
+                                        <div className="mt-2 space-y-5">
+                                            <button
+                                                onClick={() => { handleSignOut(close) }
+                                                }
+                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-grau-600 bg-indigo-600 hover:bg-indigo-700"
+                                            >
+                                                Signout
+                                            </button>
                                             <button
                                                 onClick={() => {
-                                                    router.push("/auth/signIn"), close();
+                                                    router.push(`/dashboard`), close();
                                                 }}
-                                                className="text-indigo-600 hover:text-indigo-500"
+                                                className="text-md font-semibold text-gray-600 tracking-wide "
                                             >
-                                                Login
+                                                Dashboard
                                             </button>
-                                        </p>
-                                    </div>
-                                )}
+
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <button
+                                                onClick={() => {
+                                                    router.push("/auth/register"), close();
+                                                }}
+                                                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                            >
+                                                Register
+                                            </button>
+                                            <p className="mt-6 text-center text-base font-medium text-gray-500">
+                                                Existing customer?{" "}
+                                                <button
+                                                    onClick={() => {
+                                                        router.push("/auth/login"), close();
+                                                    }}
+                                                    className="text-indigo-600 hover:text-indigo-500"
+                                                >
+                                                    Login
+                                                </button>
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </Popover.Panel>
-            </Transition>
+                        )}
+                    </Popover.Panel>
+                </Transition></div>
         </Popover>
     );
 }

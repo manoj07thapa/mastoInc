@@ -27,11 +27,7 @@ const UserMenu = () => {
 
         } catch (error) {
             console.log('Error signing out');
-
         }
-
-
-
     }
 
     // const group = userContext?.user?.signInUserSession?.accessToken.payload["cognito:groups"];
@@ -99,28 +95,6 @@ const UserMenu = () => {
                                     </button>
                                 )}
                             </Menu.Item>
-
-                            {/* <Menu.Item>
-                                {({ active }) => (
-                                    <button
-                                        type="submit"
-                                        className={classNames(
-                                            active ? "bg-gray-100" : "",
-                                            " px-4 py-2 text-sm text-gray-700 w-full text-left flex space-x-4"
-                                        )}
-                                        onClick={() => {
-                                            Auth.signOut();
-                                            userContext?.setUser(null);
-                                            router.push("/auth/login");
-
-                                        }}
-                                    >
-                                        <ShareIcon className="h-4 w-4 text-pink-600" />
-
-                                        <p>Signout</p>
-                                    </button>
-                                )}
-                            </Menu.Item> */}
                         </Menu.Items>
                     </Transition>
                 </Menu>

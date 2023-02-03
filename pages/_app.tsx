@@ -7,31 +7,33 @@ import { ThemeProvider } from "next-themes";
 import Navbar from '../components/header/Navbar'
 import { UserContext } from "../contexts/UserContext";
 import { useRouter } from "next/router";
+import { useAuthUser } from "../hooks/useAuthUser";
 
-type UserProp = {
-  username: string,
-  attributes: {
-    email: string,
-    name: string,
-    phone_number: string,
-    sub: string
-  },
+// type UserProp = {
+//   username: string,
+//   attributes: {
+//     email: string,
+//     name: string,
+//     phone_number: string,
+//     sub: string
+//   },
 
-}
+// }
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { user, setUser } = useAuthUser()
 
 
-  const [user, setUser] = useState<UserProp | null>(null);
+  // const [user, setUser] = useState<UserProp | null>(null);
 
 
-  useEffect(() => {
-    async function authListner() {
-      const user = await Auth.currentAuthenticatedUser();
-      setUser(user);
-    }
-    authListner();
-  }, [setUser, user]);
+  // useEffect(() => {
+  //   async function authListner() {
+  //     const user = await Auth.currentAuthenticatedUser();
+  //     setUser(user);
+  //   }
+  //   authListner();
+  // }, [setUser, user]);
 
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
