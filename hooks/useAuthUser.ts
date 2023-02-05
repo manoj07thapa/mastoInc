@@ -10,6 +10,14 @@ type UserProp = {
         phone_number: string,
         sub: string
     },
+    signInUserSession: {
+        accessToken: {
+            payload: {
+                "cognito:groups": string[]
+            }
+        }
+    }
+
 
 }
 
@@ -21,7 +29,7 @@ export function useAuthUser() {
             setUser(user);
         }
         authListner();
-    }, [setUser, user]);
+    }, [setUser]);
 
 
     return { user, setUser };

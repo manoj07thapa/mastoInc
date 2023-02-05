@@ -7,6 +7,13 @@ type UserProp = {
         name: string,
         phone_number: string,
         sub: string
+    },
+    signInUserSession: {
+        accessToken: {
+            payload: {
+                "cognito:groups": string[]
+            }
+        }
     }
 
 }
