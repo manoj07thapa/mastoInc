@@ -3,3 +3,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .field-error {
+      @apply ring-1 ring-red-500 focus:outline-none border-red-500;
+    }
+    .field{
+      @apply w-full rounded-md bg-violet-100 dark:bg-slate-800 dark:text-slate-400 text-gray-700 text-base font-medium placeholder:italic placeholder:text-xs  focus:ring-1 focus:ring-indigo-500
+    }
+    .label{
+      @apply text-sm dark:text-slate-300 font-normal pb-1 tracking-wide
+    }
+    .fieldError{
+    @apply text-xs italic text-red-700
+    }
+  }

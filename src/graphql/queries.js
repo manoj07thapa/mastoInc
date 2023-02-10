@@ -8,19 +8,19 @@ export const getCourse = /* GraphQL */ `
       title
       subtitle
       category
-      files
+      images
       price
       language
       tutor
       tutorWho
       relatedSkills
-      youLearn
+      courseObjectives
       duration
       framework
-      reqKnowledge
+      prerequisites
       level
       time
-      courseContent {
+      syllabus {
         topic
         description
         duration
@@ -42,19 +42,19 @@ export const listCourses = /* GraphQL */ `
         title
         subtitle
         category
-        files
+        images
         price
         language
         tutor
         tutorWho
         relatedSkills
-        youLearn
+        courseObjectives
         duration
         framework
-        reqKnowledge
+        prerequisites
         level
         time
-        courseContent {
+        syllabus {
           topic
           description
           duration

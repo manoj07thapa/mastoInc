@@ -1,25 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Auth } from "aws-amplify";
-
-
-type UserProp = {
-    username: string,
-    attributes: {
-        email: string,
-        name: string,
-        phone_number: string,
-        sub: string
-    },
-    signInUserSession: {
-        accessToken: {
-            payload: {
-                "cognito:groups": string[]
-            }
-        }
-    }
-
-
-}
+import { UserProp } from '@/types/types';
 
 export function useAuthUser() {
     const [user, setUser] = useState<UserProp | null>(null);

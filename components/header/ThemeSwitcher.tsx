@@ -23,34 +23,25 @@ const ThemeSwitcher = () => {
 
     //     if (currentTheme === 'dark') {
     //         return (
-    //             <SunIcon className="h-4 w-4 " role="button" onClick={() => setTheme('light')} />
+    //             <SunIcon className="w-4 h-4 " role="button" onClick={() => setTheme('light')} />
     //         )
     //     } else {
     //         return (
-    //             <MoonIcon className="h-4 w-4 " role="button" onClick={() => setTheme('dark')} />
+    //             <MoonIcon className="w-4 h-4 " role="button" onClick={() => setTheme('dark')} />
 
     //         )
     //     }
     // }
     return (
-        <Switch
-            name='switch mode'
-            checked={enabled}
-            onChange={setEnabled}
-            className={`${enabled ? 'bg-blue-600' : 'bg-gray-200  dark:bg-slate-700'
-                } relative inline-flex h-4 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`
-            }
-        >
-            <span
-                className={`${enabled ? 'translate-x-6' : 'translate-x-1'
-                    } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
-            />
-            {
-                (mounted && currentTheme === "dark") ? <SunIcon className="h-6 w-6 ml-2" role="button" onClick={() => setTheme('light')} /> : <MoonIcon className="h-6 w-6 pr-4 " role="button" onClick={() => setTheme('dark')} />
-            }
-        </Switch >
-
-
+        <Fragment>
+            <div>
+                {
+                    (mounted && currentTheme === "dark") ?
+                        <SunIcon className="w-6 h-6" role="button" onClick={() => setTheme('light')} /> :
+                        <MoonIcon className="w-4 h-4 " role="button" onClick={() => setTheme('dark')} />
+                }
+            </div>
+        </Fragment>
     );
 }
 export default ThemeSwitcher;

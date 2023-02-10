@@ -31,6 +31,9 @@
       "api": {
         "AdminQueries": {},
         "mastoinc200": {}
+      },
+      "storage": {
+        "mastoinc": {}
       }
     }
   }

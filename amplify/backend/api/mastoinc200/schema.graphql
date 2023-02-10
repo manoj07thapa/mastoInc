@@ -13,19 +13,19 @@ type Course
   title: String!
   subtitle: String
   category: String!
-  files: [String]
+  images: [String]
   price: Float!
   language: String!
   tutor: String!
   tutorWho: String!
   relatedSkills: [String!]
-  youLearn: [String!]
+  courseObjectives: [String!]
   duration: String!
   framework: String!
-  reqKnowledge: String!
+  prerequisites: [String!]
   level: String!
   time: String!
-  courseContent: [Syllabus]
+  syllabus: [Syllabus!]
 }
 
 type Syllabus {

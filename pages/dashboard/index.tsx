@@ -1,10 +1,20 @@
-import type { FC } from 'react';
+import type { FC, ReactElement } from 'react';
+import SidebarLayout from '@/components/dashboard/SidebarLayout';
+import { PageWithLayout } from '@/types/types';
 
-interface indexProps { }
 
-const index: FC<indexProps> = ({ }) => {
+const Dashboard: PageWithLayout = () => {
     return (
-        <div>Dashboard</div>
+        <div>Dashboard General Information section</div>
     );
 }
-export default index;
+
+// binding the page to the sidebatlayout
+Dashboard.getLayout = function (page: ReactElement) {
+    return (
+        <SidebarLayout >
+            <main>{page}</main>
+        </SidebarLayout>
+    )
+}
+export default Dashboard;

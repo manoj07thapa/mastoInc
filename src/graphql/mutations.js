@@ -11,19 +11,19 @@ export const createCourse = /* GraphQL */ `
       title
       subtitle
       category
-      files
+      images
       price
       language
       tutor
       tutorWho
       relatedSkills
-      youLearn
+      courseObjectives
       duration
       framework
-      reqKnowledge
+      prerequisites
       level
       time
-      courseContent {
+      syllabus {
         topic
         description
         duration
@@ -43,19 +43,19 @@ export const updateCourse = /* GraphQL */ `
       title
       subtitle
       category
-      files
+      images
       price
       language
       tutor
       tutorWho
       relatedSkills
-      youLearn
+      courseObjectives
       duration
       framework
-      reqKnowledge
+      prerequisites
       level
       time
-      courseContent {
+      syllabus {
         topic
         description
         duration
@@ -75,19 +75,19 @@ export const deleteCourse = /* GraphQL */ `
       title
       subtitle
       category
-      files
+      images
       price
       language
       tutor
       tutorWho
       relatedSkills
-      youLearn
+      courseObjectives
       duration
       framework
-      reqKnowledge
+      prerequisites
       level
       time
-      courseContent {
+      syllabus {
         topic
         description
         duration

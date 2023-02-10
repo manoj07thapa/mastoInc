@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-import { Formik, Field, Form, FormikHelpers } from "formik";
+import { Formik, Field, Form, FormikHelpers, FormikValues } from "formik";
 import { Auth } from "aws-amplify";
 import Link from "next/link";
 import Head from "next/head";
@@ -47,14 +47,14 @@ function SignIn() {
                 <title>Login</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className=" flex  justify-between ">
+            <div className="flex justify-between ">
                 <div className="mt-[500px] flex -skew-y-12  flex-col ">
-                    <div className="h-10 w-2 bg-pink-500 mix-blend-multiply sm:w-12 md:w-24 lg:w-40"></div>
-                    <div className="-mt-4 h-10 w-4 bg-indigo-500 mix-blend-multiply sm:w-16 md:w-32 lg:w-48"></div>
+                    <div className="w-2 h-10 bg-pink-500 mix-blend-multiply sm:w-12 md:w-24 lg:w-40"></div>
+                    <div className="w-4 h-10 -mt-4 bg-indigo-500 mix-blend-multiply sm:w-16 md:w-32 lg:w-48"></div>
                 </div>
-                <div className="w-full max-w-md lg:max-w-lg mt-16 ">
-                    <div className=" mt-10 rounded-md dark:bg-slate-800 px-12 py-8 shadow-lg">
-                        <h3 className="text-lg font-extrabold tracking-wide  text-left   text-slate-100">
+                <div className="w-full max-w-md mt-16 lg:max-w-lg ">
+                    <div className="px-12 py-8 mt-10 rounded-md shadow-lg dark:bg-slate-800">
+                        <h3 className="text-lg font-extrabold tracking-wide text-left text-slate-100">
                             Sign in to your account
                         </h3>
                         <div className="mt-10">
@@ -69,7 +69,7 @@ function SignIn() {
                                         <div>
                                             <label
                                                 htmlFor="email "
-                                                className="mb-1 block text-sm font-medium tracking-wide text-slate-200"
+                                                className="block mb-1 text-sm font-medium tracking-wide text-slate-200"
                                             >
                                                 Email
                                             </label>
@@ -86,7 +86,7 @@ function SignIn() {
                                         <div className="">
                                             <label
                                                 htmlFor="password"
-                                                className="mb-1 mt-5 block text-sm font-medium tracking-wide text-slate-200 "
+                                                className="block mt-5 mb-1 text-sm font-medium tracking-wide text-slate-200 "
                                             >
                                                 Password
                                             </label>
@@ -100,7 +100,7 @@ function SignIn() {
                                                 {errors.password && errors.password}
                                             </div>
                                         </div>
-                                        <div className="mt-4 flex items-center justify-between">
+                                        <div className="flex items-center justify-between mt-4">
                                             <div className="text-sm">
                                                 <Link href="/auth/forgotpassword" className="font-medium text-indigo-500 hover:text-indigo-600">
                                                     Forgot your password?
@@ -108,10 +108,10 @@ function SignIn() {
                                                 </Link>
                                             </div>
                                         </div>
-                                        <div className="mt-4  text-right ">
+                                        <div className="mt-4 text-right ">
                                             <button
                                                 type="submit"
-                                                className="text-medium w-full rounded-md bg-pink-600 px-4 py-2 uppercase tracking-wider text-white hover:bg-pink-700 transition ease-in-out"
+                                                className="w-full px-4 py-2 tracking-wider text-white uppercase transition ease-in-out bg-pink-600 rounded-md text-medium hover:bg-pink-700"
                                             >
                                                 SignIn
                                             </button>
@@ -121,15 +121,15 @@ function SignIn() {
                             </Formik>
                         </div>
                     </div>
-                    <div className="mt-6 flex items-center space-x-1 px-4">
+                    <div className="flex items-center px-4 mt-6 space-x-1">
                         <p className="text-white">Don&apos;t have an account?</p>
                         <Link href="/auth/register" className="text-sm font-semibold text-indigo-500 hover:text-indigo-600">
                             Register
                         </Link>
                     </div>
                 </div>
-                <div className="mt-12 flex -skew-y-12  flex-col ">
-                    <div className="h-10 w-4 bg-indigo-500 sm:w-16 md:w-32 lg:w-48 "></div>
+                <div className="flex flex-col mt-12 -skew-y-12 ">
+                    <div className="w-4 h-10 bg-indigo-500 sm:w-16 md:w-32 lg:w-48 "></div>
                 </div>
             </div>
         </Fragment>

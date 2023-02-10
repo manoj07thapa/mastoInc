@@ -1,0 +1,24 @@
+{
+  "resourceName": "mastoinc",
+  "policyUUID": "189da6c7",
+  "bucketName": "mastoinc20012bd140346974a39826368199dbdbf1c",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {
+    "admin": [
+      "CREATE_AND_UPDATE",
+      "READ",
+      "DELETE"
+    ],
+    "teacher": [
+      "CREATE_AND_UPDATE",
+      "READ"
+    ]
+  }
+}
