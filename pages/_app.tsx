@@ -18,7 +18,6 @@ type AppPropsWithLayout = AppProps & {
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const { user, setUser } = useAuthUser()
-  console.log(user)
 
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 

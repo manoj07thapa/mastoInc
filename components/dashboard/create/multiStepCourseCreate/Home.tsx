@@ -1,14 +1,12 @@
-import { Field, FormikConfig, FormikValues, ErrorMessage, FormikHelpers, FormikContext, useFormikContext } from 'formik';
+import { FormikConfig, FormikValues, ErrorMessage, FormikHelpers, useFormikContext } from 'formik';
 import { array, mixed, number, object, string, } from 'yup';
-import { useRouter } from 'next/router';
 import { Storage, API } from "aws-amplify";
 import { createCourse } from '../../../../src/graphql/mutations'
 import { FormikStepper } from "./FormikStepper";
 import StepOne from './steps/StepOne';
 import StepTwo from './steps/StepTwo';
 import StepThree from './steps/StepThree';
-import ImageUploadComponent from './steps/ImageUploadComponent';
-import { ImageProps } from './steps/ImageUploadComponent';
+import { MultipleFileUploadField } from '@/components/upload/MultiFileUploadField';
 
 const initialValues = {
     title: '',
@@ -26,7 +24,7 @@ const initialValues = {
     prerequisites: [""],
     courseObjectives: [""],
     syllabus: [{ topic: "", description: "", duration: "" }],
-    images: []
+    images: [""]
 }
 
 const courseInfoSchema = object({
@@ -53,25 +51,28 @@ const syllabusSchema = object().shape({
     syllabus: array()
         .of(
             object().shape({
-                topic: string().min(10, 'topic must contain at least 10 charachers').required('Topic is required'), // these constraints take precedence
+                topic: string().min(10, 'topic must contain at least 10 charachers').required('Topic is required').required(), // these constraints take precedence
                 description: string().min(15, 'description must be at least 15 characters'), // these constraints take precedence
-                duration: string(), // these constraints take precedence
+                duration: string().required(), // these constraints take precedence
             })
         )
 
 })
 
+const imageUpoadSchema = object().shape({
+    images: array().of(string().required())
+
+})
 
 function Home() {
-
-    const router = useRouter()
-    // console.log(router)
     const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
+
+        if (values.images.length === 0) return
         console.log('Values', values)
         try {
             //uploading the image to s3 one at a time with the file name as the key
             const imageKeys = await Promise.all(
-                values.images.map(async (file: ImageProps) => {
+                values.images.map(async (file: File) => {
                     const key = await Storage.put(file.name, file);
                     return key.key;
                 })
@@ -84,14 +85,11 @@ function Home() {
             });
             if (res) {
                 console.log("Course has been created");
+                actions.resetForm()
+                console.log("RESPONSECOURSECREATION", res);
             }
-            console.log("RESPONSECOURSECREATION", res);
-            // if (res.data.createCourse) {
-            //   actions.resetForm();
-            // }
         } catch (error) {
-            console.log("ERROR", error);
-
+            console.log("RESERROR", error);
         }
 
     }
@@ -100,6 +98,7 @@ function Home() {
         <FormikStepper
             initialValues={initialValues}
             onSubmit={handleSubmit}
+
 
         >
             {/**step1 */}
@@ -115,8 +114,11 @@ function Home() {
                 <StepThree />
             </FormikStep>
             {/**step4  */}
-            <FormikStep label="CourseImage" >
-                <ImageUploadComponent />
+            <FormikStep label="CourseImage" validationSchema={imageUpoadSchema}>
+                <MultipleFileUploadField />
+            </FormikStep>
+            <FormikStep label="Preview" >
+                Preview
             </FormikStep>
         </FormikStepper>
 

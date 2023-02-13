@@ -3,7 +3,7 @@ export const categories = [
     { key: "frontend", value: "frontend" },
     { key: "backend", value: "backend" },
     { key: "fullstack", value: "fullstack" },
-    { key: "web design", value: "web design" },
+    { key: "webDesign", value: "webDesign" },
     { key: "database", value: "database" }
 ];
 
@@ -34,7 +34,8 @@ export const languages = [
     { key: "rust", value: "rust" },
     { key: "java", value: "java" },
     { key: "c#", value: "c#" },
-    { key: "php", value: "php" }
+    { key: "php", value: "php" },
+    { key: "css and html", vale: "css and html" }
 ];
 
 export const database = [

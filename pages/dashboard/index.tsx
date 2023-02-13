@@ -5,7 +5,14 @@ import { PageWithLayout } from '@/types/types';
 
 const Dashboard: PageWithLayout = () => {
     return (
-        <div>Dashboard General Information section</div>
+        <div className='opacity-15 bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900' >
+            <div className="h-96 w-full bg-[url('/graph-paper.svg')] opacity-10">
+                <h1 className='text-center'>This a dashboard home page</h1>
+
+
+            </div>
+
+        </div>
     );
 }
 

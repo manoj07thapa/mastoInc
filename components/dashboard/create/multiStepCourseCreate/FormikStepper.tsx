@@ -1,9 +1,10 @@
-import { Form, Formik, FormikConfig, FormikValues, FormikHelpers } from 'formik';
+import { Form, Formik, FormikConfig, FormikValues, FormikHelpers, useFormikContext } from 'formik';
 import Stepper from './Stepper';
 import StepperControl from './StepControl';
 import React, { ReactElement, ReactNode, useState } from 'react'
 import { FormikStepProps } from './Home';
 import { ConnectedFocusError } from 'focus-formik-error'
+import PreviewModal from './PreviewModal';
 
 
 export type FormikStepperProps = FormikConfig<FormikValues> & {
@@ -13,7 +14,7 @@ export type FormikStepperProps = FormikConfig<FormikValues> & {
 
 export function FormikStepper({ children, ...props }: FormikStepperProps) {
     const childrenArray = React.Children.toArray(children) as ReactElement<FormikStepProps>[];
-    const [step, setStep] = useState(0);
+    const [step, setStep] = useState(3);
     const currentChild = childrenArray[step];
     const [completed, setCompleted] = useState(false);
 
@@ -22,9 +23,14 @@ export function FormikStepper({ children, ...props }: FormikStepperProps) {
     }
 
     const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
+        console.log('Values', values)
+
         if (isLastStep()) {
-            await props.onSubmit(values, actions);
+            const res = await props.onSubmit(values, actions);
+            console.log('STEPPERRES', res);
+
             setCompleted(true);
+            setStep(0)
         } else {
             setStep((s) => s + 1);
 
@@ -50,7 +56,7 @@ export function FormikStepper({ children, ...props }: FormikStepperProps) {
             validationSchema={currentChild.props.validationSchema}
             onSubmit={handleSubmit}
         >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, isValid }) => (
                 <Form autoComplete="off" className="">
                     <ConnectedFocusError />
                     <div className="space-y-12">
@@ -61,7 +67,7 @@ export function FormikStepper({ children, ...props }: FormikStepperProps) {
                         <div className='space-y-4'>
                             {currentChild}
                         </div>
-                        <StepperControl step={step} setStep={setStep} isSubmitting={isSubmitting} isLastStep={isLastStep} />
+                        <StepperControl step={step} setStep={setStep} isSubmitting={isSubmitting} isLastStep={isLastStep} isValid={isValid} />
                     </div>
                 </Form>
             )}

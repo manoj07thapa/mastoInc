@@ -22,7 +22,7 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
     return (
         <Fragment>
             <div className="mx-auto max-w-9xl ">
-                <div className="flex flex-col items-start md:container md:relative lg:flex-row md:space-x-32">
+                <div className="flex flex-col items-start md:container md:relative lg:flex-row ">
                     <aside className="justify-center hidden border-r md:sticky md:top-0 md:h-screen md:w-2/12 md:hover:overflow-auto lg:block border-slate-800">
                         <div className="space-y-20 ">
                             <div className="w-full ">
@@ -331,7 +331,7 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
 
                     </div> */}
 
-                    <main className="h-full mt-12 md:w-10/12 md:mt-0 py-7">
+                    <main className=" md:w-10/12 md:mt-0">
                         {children}
                     </main>
 

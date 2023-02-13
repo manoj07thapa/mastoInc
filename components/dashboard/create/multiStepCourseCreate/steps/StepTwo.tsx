@@ -1,7 +1,8 @@
 
-import { FieldArray, Field, ErrorMessage } from "formik";
+import { FieldArray, Field, ErrorMessage, useFormikContext, FormikValues } from 'formik';
 
 const StepTwo = () => {
+    const { errors } = useFormikContext<FormikValues>()
     return (
         <div>
             {/**cOUSEagenda section */}
@@ -20,7 +21,7 @@ const StepTwo = () => {
                                 {courseObjectives.length &&
                                     courseObjectives.map((_: any, index: number) => (
                                         <div key={index} className="">
-                                            <div className="flex items-end ">
+                                            <div className="">
                                                 <div className="w-full">
                                                     {index === 0 && <label htmlFor="courseObjectives " className=" label"  >
                                                         Course Objectives
@@ -29,12 +30,12 @@ const StepTwo = () => {
                                                         name={`courseObjectives[${index}]`}
                                                         type="text"
                                                         id="courseObjectives"
-                                                        className={`field`}
+                                                        className={`field ${errors.courseObjectives && "field-error"}`}
                                                         placeholder="courseObjective"
                                                     />
                                                     <ErrorMessage component="p" name={`courseObjectives.${index}`} className="fieldError" />
                                                 </div>
-                                                <div className="inline-flex flex-col pl-4 space-y-2">
+                                                <div className="inline-flex flex-col pt-4 space-y-2">
                                                     {index > 0 && (
                                                         <button
                                                             type="button"
@@ -77,7 +78,7 @@ const StepTwo = () => {
                                     {relatedSkills.length &&
                                         relatedSkills.map((_: any, index: number) => (
                                             <div key={index} className="">
-                                                <div className="flex items-end ">
+                                                <div className="">
                                                     <div className="w-full">
                                                         {index === 0 && <label htmlFor="prerequisite " className=" label"  >
                                                             Relates skills
@@ -86,28 +87,28 @@ const StepTwo = () => {
                                                             name={`relatedSkills[${index}]`}
                                                             type="text"
                                                             id="relatedSkills"
-                                                            className={`field`}
+                                                            className={`field ${errors.relatedSkills && "field-error"}`}
                                                             placeholder="tech stacks.."
                                                         />
                                                         <ErrorMessage component="p" name={`relatedSkills.${index}`} className="fieldError" />
                                                     </div>
-                                                    <div className="inline-flex flex-col pl-4 space-y-2">
+                                                    <div className="pt-4 space-x-4 ">
                                                         {index > 0 && (
                                                             <button
                                                                 type="button"
                                                                 onClick={() => remove(index)}
-                                                                className="px-2 py-1 text-xs transition duration-100 rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100 ease "
+                                                                className="px-4 py-2 text-xs transition duration-100 ease-in-out rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100 "
                                                             >
                                                                 Drop
                                                             </button>
                                                         )}
-                                                        {index === 0 && <button
+                                                        <button
                                                             type="button"
                                                             onClick={() => push('')}
-                                                            className="px-2 py-1 text-xs transition duration-100 rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100 ease "
+                                                            className="px-4 py-2 text-xs transition duration-100 ease-in-out rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100 "
                                                         >
                                                             Add
-                                                        </button>}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +135,7 @@ const StepTwo = () => {
                                         prerequisites.map((_: any, index: number) => (
 
                                             <div key={index} className="">
-                                                <div className="flex items-end ">
+                                                <div className="">
                                                     <div className="w-full">
                                                         <div>
                                                             {index === 0 && <label htmlFor="prerequisite " className="label"  >
@@ -144,29 +145,29 @@ const StepTwo = () => {
                                                                 name={`prerequisites[${index}]`}
                                                                 type="text"
                                                                 id="prerequisites"
-                                                                className={`field`}
+                                                                className={`field ${errors.relatedSkills && "field-error"}`}
                                                                 placeholder="previous knowledge"
                                                             />
                                                         </div>
                                                         <ErrorMessage component="p" name={`prerequisites.${index}`} className="inline-block fieldError" />
                                                     </div>
-                                                    <div className="inline-flex flex-col items-center pl-4 space-y-2">
+                                                    <div className="pt-4 space-x-4 ">
                                                         {index > 0 && (
                                                             <button
                                                                 type="button"
                                                                 onClick={() => remove(index)}
-                                                                className="px-2 py-1 text-xs transition duration-100 ease-in-out rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100 "
+                                                                className="px-4 py-2 text-xs transition duration-100 ease-in-out rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100"
                                                             >
                                                                 Drop
                                                             </button>
                                                         )}
-                                                        {index === 0 && <button
+                                                        <button
                                                             type="button"
                                                             onClick={() => push('')}
-                                                            className="px-2 py-1 text-xs transition duration-100 rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100 ease"
+                                                            className="px-4 py-2 text-xs transition duration-100 ease-in-out rounded-md shadow bg-slate-800 text-slate-300 hover:text-slate-100"
                                                         >
                                                             Add
-                                                        </button>}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

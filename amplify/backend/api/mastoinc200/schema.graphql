@@ -13,7 +13,7 @@ type Course
   title: String!
   subtitle: String
   category: String!
-  images: [String]
+  images: [String!]
   price: Float!
   language: String!
   tutor: String!

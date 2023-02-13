@@ -1,7 +1,8 @@
-import { FieldArray, Field, ErrorMessage } from "formik";
+import { FieldArray, Field, ErrorMessage, useFormikContext, FormikValues } from 'formik';
 
 
 const StepThree = () => {
+    const { errors } = useFormikContext<FormikValues>()
     return (
         <div>
             <FieldArray name="syllabus">
@@ -26,7 +27,7 @@ const StepThree = () => {
                                                     name={`syllabus[${index}].topic`}
                                                     type="text"
                                                     id="syllabusTitle"
-                                                    className={`field`}
+                                                    className={`field ${errors.syllabus && "field-error"}`}
                                                     placeholder="Topic..."
                                                 />
                                                 <ErrorMessage component="p" name={`syllabus.${index}.topic`} className="fieldError" />
@@ -40,7 +41,7 @@ const StepThree = () => {
                                                     id="syllabusDescription"
                                                     as="textarea"
                                                     rows="4"
-                                                    className={`field`}
+                                                    className={`field ${errors.syllabus && "field-error"}`}
                                                     placeholder="Description..."
                                                 />
                                                 <ErrorMessage component="p" name={`syllabus.${index}.description`} className="fieldError" />
@@ -52,7 +53,7 @@ const StepThree = () => {
                                                     type="text"
                                                     id="syllabusDuration"
                                                     rows="4"
-                                                    className={`field`}
+                                                    className={`field ${errors.syllabus && "field-error"}`}
                                                     placeholder="Duration..."
                                                 />
                                                 <ErrorMessage component="p" name={`syllabus.${index}.duration`} className="fieldError" />

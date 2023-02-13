@@ -14,7 +14,7 @@ export type FrameworkFieldProp = {
 }[]
 
 export default function FrameworkField() {
-    const { values } = useFormikContext<FieldAttributes<FormikValues>>()
+    const { values, errors } = useFormikContext<FieldAttributes<FormikValues>>()
 
     const [frameworks, setFrameworks] = useState<FrameworkFieldProp | undefined>(undefined);
 
@@ -52,7 +52,7 @@ export default function FrameworkField() {
                 type="text"
                 id="framework"
                 value={values.framework}
-                className={` " field `}
+                className={` " field ${errors.framework && "field-error"}`}
             >
                 {frameworks &&
                     frameworks.map((option) => (

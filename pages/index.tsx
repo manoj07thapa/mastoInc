@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Auth } from "aws-amplify";
+import LoadingSpinner from '@/components/utils/LoadingSpinner';
 
 
 export default function Home() {
@@ -23,11 +24,12 @@ export default function Home() {
 
           }}
 
-          className='ml-12 mt-12 bg-red-500 text-white px-2 py-2 ron'
+          className='px-2 py-2 mt-12 ml-12 text-white bg-red-500 ron'
         >
 
           <p>Signout</p>
         </button>
+        {/* <LoadingSpinner /> */}
       </main>
     </>
   )
