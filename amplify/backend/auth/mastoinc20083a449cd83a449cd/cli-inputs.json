@@ -45,7 +45,11 @@
     ],
     "userPoolGroups": true,
     "adminQueries": true,
-    "triggers": {},
+    "triggers": {
+      "PostConfirmation": [
+        "custom"
+      ]
+    },
     "hostedUI": false,
     "userPoolGroupList": [
       "admin",
@@ -54,6 +58,36 @@
     "adminQueryGroup": "admin",
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "mastoinc20083a449cd83a449cdPostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "authProviders": [],
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"mastoinc20083a449cd83a449cdPostConfirmation\"\n  }\n]",
+    "permissions": []
   }
 }

@@ -7,6 +7,7 @@ import { UserContext } from "../contexts/UserContext";
 import { useAuthUser } from "../hooks/useAuthUser";
 import type { NextPage } from "next";
 import GlobalLayout from '../components/layouts/GlobalLayout';
+// import { AnimatePresence } from 'framer-motion';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   ))
 
   return (
+
     <UserContext.Provider value={value}>
       <ThemeProvider enableSystem={true} attribute="class">
         {getLayout(
@@ -35,5 +37,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         )}
       </ThemeProvider>
     </UserContext.Provider>
+
   )
 }

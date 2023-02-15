@@ -36,14 +36,14 @@
         "authConfig": {
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authmastoinc20083a449cd83a449cd"
-              }
+              "authenticationType": "AWS_IAM"
             }
           ],
           "defaultAuthentication": {
-            "authenticationType": "AWS_IAM"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authmastoinc20083a449cd83a449cd"
+            }
           }
         }
       },
@@ -54,7 +54,17 @@
   "auth": {
     "mastoinc20083a449cd83a449cd": {
       "customAuth": false,
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "mastoinc20083a449cd83a449cdPostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -111,6 +121,11 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "mastoinc20083a449cd83a449cdPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "hosting": {
@@ -134,6 +149,22 @@
         {
           "category": "function",
           "resourceName": "AdminQueriesb346452f"
+        }
+      ]
+    },
+    "AMPLIFY_function_mastoinc20083a449cd83a449cdPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "mastoinc20083a449cd83a449cdPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_mastoinc20083a449cd83a449cdPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "mastoinc20083a449cd83a449cdPostConfirmation"
         }
       ]
     },

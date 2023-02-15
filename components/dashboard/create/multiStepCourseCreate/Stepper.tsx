@@ -12,8 +12,6 @@ type StepperProps = {
 
 const Stepper = ({ steps, step, isLastStep }: StepperProps) => {
     const { values } = useFormikContext<FormikValues>()
-    console.log('STEPPERVALUES', values.images);
-
 
     const displaySteps = steps.map((currentStep, index) => (
         <ol key={index} className="">

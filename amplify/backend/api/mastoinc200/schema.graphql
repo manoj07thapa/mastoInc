@@ -1,3 +1,21 @@
+type User
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: groups, groups: ["admin"] }
+      { allow: groups, groups: ["teacher"] }
+      {
+        allow: owner
+        ownerField: "username"
+        operations: [read]
+      }
+    ]
+  ) {
+  id: ID!
+  username: String!
+  email: String!
+  phone_number: String!
+}
 
 type Course
   @model(subscriptions: null)

@@ -27,22 +27,24 @@ export type SyllabusProps = {
 }
 
 export type CourseProps = {
-    title: string
+    id: string,
+    title: string,
     subtitle?: string
     category: string
-    files?: string[]
+    images: string[]
+    s3ImageUrl?: string[]
     price: number
     language: string
     tutor: string
     tutorWho: string
     relatedSkills: string[]
-    youLearn: string[]
+    courseObjectives: string[]
     duration: string
     framework: string
-    reqKnowledge: string
+    prerequisites: string[]
     level: string
     time: string
-    courseContent: SyllabusProps[]
+    syllabus: SyllabusProps[]
 
 }
 

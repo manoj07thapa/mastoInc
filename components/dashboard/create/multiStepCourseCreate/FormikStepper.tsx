@@ -14,7 +14,7 @@ export type FormikStepperProps = FormikConfig<FormikValues> & {
 
 export function FormikStepper({ children, ...props }: FormikStepperProps) {
     const childrenArray = React.Children.toArray(children) as ReactElement<FormikStepProps>[];
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(0);
     const currentChild = childrenArray[step];
     const [completed, setCompleted] = useState(false);
 
@@ -23,12 +23,9 @@ export function FormikStepper({ children, ...props }: FormikStepperProps) {
     }
 
     const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
-        console.log('Values', values)
 
         if (isLastStep()) {
             const res = await props.onSubmit(values, actions);
-            console.log('STEPPERRES', res);
-
             setCompleted(true);
             setStep(0)
         } else {

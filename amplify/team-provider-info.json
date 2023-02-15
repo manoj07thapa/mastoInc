@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-mastoinc200-dev-195827-unauthRole",
       "StackName": "amplify-mastoinc200-dev-195827",
       "StackId": "arn:aws:cloudformation:ap-south-1:469175017431:stack/amplify-mastoinc200-dev-195827/f0b5b710-a3cc-11ed-88c1-0a22c52a8c78",
-      "AmplifyAppId": "dnoxgupb7w4gp"
+      "AmplifyAppId": "dnoxgupb7w4gp",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-mastoinc200-dev-195827-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -26,6 +27,10 @@
         "AdminQueriesb346452f": {
           "deploymentBucketName": "amplify-mastoinc200-dev-195827-deployment",
           "s3Key": "amplify-builds/AdminQueriesb346452f-77566d6279786c6e2b47-build.zip"
+        },
+        "mastoinc20083a449cd83a449cdPostConfirmation": {
+          "deploymentBucketName": "amplify-mastoinc200-dev-195827-deployment",
+          "s3Key": "amplify-builds/mastoinc20083a449cd83a449cdPostConfirmation-616d5346394637424d44-build.zip"
         }
       },
       "api": {

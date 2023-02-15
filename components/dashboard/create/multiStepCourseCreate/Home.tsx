@@ -68,7 +68,6 @@ function Home() {
     const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
 
         if (values.images.length === 0) return
-        console.log('Values', values)
         try {
             //uploading the image to s3 one at a time with the file name as the key
             const imageKeys = await Promise.all(
@@ -85,7 +84,7 @@ function Home() {
             });
             if (res) {
                 console.log("Course has been created");
-                actions.resetForm()
+                // actions.resetForm()
                 console.log("RESPONSECOURSECREATION", res);
             }
         } catch (error) {
