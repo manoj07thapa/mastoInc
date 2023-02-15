@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import PreviewModal from "./PreviewModal";
 import LoadingSpinner from "@/components/utils/LoadingSpinner";
 import { FormikValues, useFormikContext } from "formik";
 
@@ -12,16 +11,6 @@ type StepControlProps = {
 }
 
 const StepControl = ({ step, setStep, isSubmitting, isLastStep, isValid }: StepControlProps) => {
-    let [isOpen, setIsOpen] = useState(false)
-    const { values } = useFormikContext<FormikValues>()
-
-    function closePreviewModal() {
-        setIsOpen(false)
-    }
-
-    function openPreviewModal() {
-        setIsOpen(true)
-    }
 
     return (
         <div className="flex justify-around mt-12 mb-8 ">
@@ -44,12 +33,11 @@ const StepControl = ({ step, setStep, isSubmitting, isLastStep, isValid }: StepC
                     {isSubmitting ? <LoadingSpinner /> : isLastStep() ? 'Create' : 'Next'}
                 </button>
                 {isLastStep() &&
-                    <button className="px-4 py-2 bg-pink-600 rounded-md text-slate-200" type="button" onClick={() => openPreviewModal()}>
+                    <button className="px-4 py-2 bg-pink-600 rounded-md text-slate-200" type="button" >
                         Preview
                     </button>
 
                 }
-                {isOpen && <PreviewModal isOpen={isOpen} closePreviewModal={closePreviewModal} />}
             </div>
 
         </div >

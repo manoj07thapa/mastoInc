@@ -1,4 +1,3 @@
-import { CourseProps } from "@/types/types";
 
 const CourseLoadingSkeleton = () => {
     return (

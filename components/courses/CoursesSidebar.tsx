@@ -2,7 +2,7 @@ import { courses } from "@/components/header/headerData/header/navData";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const CourseSidebar = ({ }) => {
+const CourseSidebar = () => {
     const { query } = useRouter();
     return (
         <aside className="hidden divide-x sm:block divide-slate-800 divide-opacity-50">

@@ -5,10 +5,10 @@ import { Storage, withSSRContext } from "aws-amplify";
 import CourseSidebar from "@/components/courses/CoursesSidebar";
 import { listCourses } from "@/src/graphql/queries";
 import CourseCard from "@/components/courses/CourseCard";
-import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
+import { GetServerSideProps } from 'next';
 import { CourseProps } from "@/types/types";
 import CourseLoadingSkeleton from "@/components/utils/CourseLoadingSkeleton";
-import { Props } from "@headlessui/react/dist/types";
+// import { Props } from "@headlessui/react/dist/types";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const param = ctx.query.params;
