@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import LoadingSpinner from "@/components/utils/LoadingSpinner";
-import { FormikValues, useFormikContext } from "formik";
 
 type StepControlProps = {
     step: number,
