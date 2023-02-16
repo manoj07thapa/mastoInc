@@ -48,6 +48,19 @@ export type CourseProps = {
 
 }
 
+export type ResourceProps = {
+    title: string,
+    subtitle: string,
+    subtitle1?: string,
+    subtitle2?: string,
+    images?: File[],
+    s3ImageKeys?: string[]
+    s3ImageUrl?: string[]
+    description: string,
+    page: string,
+    section: string,
+}
+
 export type PageWithLayout = NextPage & {
     getLayout: (page: ReactElement) => ReactNode
 

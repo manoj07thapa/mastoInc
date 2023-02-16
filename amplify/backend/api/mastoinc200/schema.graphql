@@ -51,3 +51,24 @@ type Syllabus {
   description: String
   duration: String
 }
+
+type Resource
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: groups, groups: ["admin"] }
+      { allow: groups, groups: ["teacher"], operations: [read]}
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  subtitle: String!
+  subtitle1: String
+  subtitle2: String
+  description: String!
+  page: String!
+  section: String!
+  s3ImageKeys: [String]
+}

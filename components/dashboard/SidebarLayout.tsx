@@ -20,10 +20,10 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
         <Fragment>
             <div className="mx-auto max-w-9xl ">
                 <div className="flex flex-col items-start md:container md:relative lg:flex-row ">
-                    <aside className="justify-center hidden border-r md:sticky md:top-0 md:h-screen md:w-2/12 md:hover:overflow-auto lg:block border-slate-800">
+                    <aside className="justify-center hidden transition duration-200 ease-in-out border-r md:sticky md:top-0 md:h-screen md:w-2/12 md:hover:overflow-auto lg:block border-slate-800">
                         <div className="space-y-20 ">
                             <div className="w-full ">
-                                <div className='flex items-center justify-between'>
+                                <div className='sticky top-0 flex items-center justify-between'>
                                     <Link href="/" className=' md:sticky md:top-0'>
                                         <div className="flex space-x-6 text-lg font-semibold transition ease-in-out shadow-md bg-slate-900 py-7 text-slate-300 hover:text-slate-200">
                                             <CakeIcon className="w-6 h-6 text-pink-600 " />
