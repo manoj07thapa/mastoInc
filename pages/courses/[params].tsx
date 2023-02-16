@@ -14,7 +14,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const param = ctx.query.params;
     const req = ctx.req;
     const SSR = withSSRContext({ req });
-    // const user = await SSR?.Auth?.currentAuthenticatedUser();
 
     const filter = {
         category: { eq: param },
@@ -24,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         try {
             const response = await SSR.API.graphql({
                 query: listCourses,
-                authMode: "AWS_IAM"
+                // authMode: "AWS_IAM"
             });
             const data: CourseProps[] = response.data.listCourses.items
             return {
@@ -44,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             const response = await SSR.API.graphql({
                 query: listCourses,
                 variables: { filter },
-                authMode: "AWS_IAM"
+                // authMode: "AWS_IAM"
             });
 
             const data: CourseProps[] = response.data.listCourses.items
@@ -68,6 +67,8 @@ const Course = ({ ssrCourses }: { ssrCourses: CourseProps[] }) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [courses, setCourses] = useState<CourseProps[] | []>([]);
+    console.log('courses', courses);
+
     const fetchCoursesWithImage = useCallback(async () => {
         try {
             const courses = await Promise.all(
@@ -112,7 +113,7 @@ const Course = ({ ssrCourses }: { ssrCourses: CourseProps[] }) => {
                         <CourseSidebar />
                     </div>
                     <main className="pl-16 sm:col-span-2 md:col-span-10">
-                        {loading ? <CourseLoadingSkeleton /> : <CourseCard courses={courses} />}
+                        {(loading && !courses.length) ? <CourseLoadingSkeleton /> : <CourseCard courses={courses} />}
 
                     </main>
                 </div>

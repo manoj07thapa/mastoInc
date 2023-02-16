@@ -7,7 +7,8 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "mastoinc200": {
       "GraphQLAPIEndpointOutput": "string",
-      "GraphQLAPIIdOutput": "string"
+      "GraphQLAPIIdOutput": "string",
+      "GraphQLAPIKeyOutput": "string"
     }
   },
   "auth": {

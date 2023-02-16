@@ -39,7 +39,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <Link href="/" className="text-xl font-extrabold tracking-wider">
-                            WebMolecule
+                            MastoInc
                         </Link>
                     </div>
 

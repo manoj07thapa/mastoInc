@@ -31,12 +31,6 @@ const StepControl = ({ step, setStep, isSubmitting, isLastStep, isValid }: StepC
                 >
                     {isSubmitting ? <LoadingSpinner /> : isLastStep() ? 'Create' : 'Next'}
                 </button>
-                {isLastStep() &&
-                    <button className="px-4 py-2 bg-pink-600 rounded-md text-slate-200" type="button" >
-                        Preview
-                    </button>
-
-                }
             </div>
 
         </div >

@@ -1,4 +1,4 @@
-import type { FC, ReactElement } from 'react';
+import { ReactElement } from 'react';
 import SidebarLayout from '@/components/dashboard/SidebarLayout';
 import { PageWithLayout } from '@/types/types';
 

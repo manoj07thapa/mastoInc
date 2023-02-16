@@ -33,7 +33,7 @@ function CreateNewPassword() {
         }
     };
     return (
-        <Fragment>
+        <>
             <Head>
                 <title>Change Password</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -115,7 +115,7 @@ function CreateNewPassword() {
                     <div className="w-4 h-10 bg-indigo-500 sm:w-16 md:w-32 lg:w-48 "></div>
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 }
 

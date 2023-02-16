@@ -24,17 +24,14 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
             <div className="w-full">
                 <div className="w-full bg-slate-800 md:py-12 ">
                     <section className="md:hidden">
-                        {courseImages && (
-                            <Image
-                                src={courseImages[0]}
-                                height={40}
-                                width={100}
-                                alt="course image"
-
-                                className="shadow-md "
-                                priority
-                            />
-                        )}
+                        <Image
+                            src={courseImages[0]}
+                            height={40}
+                            width={100}
+                            alt="course image"
+                            className="shadow-md "
+                            priority
+                        />
                     </section>
                     {/** Hero section*/}
                     <section className="w-full px-4 py-6 space-y-1 ">
@@ -93,8 +90,8 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                             Related Stacks
                         </h3>
                         <div className="flex items-center mt-2 space-x-3">
-                            {relatedSkills.map((skill) => (
-                                <div key={skill}>
+                            {relatedSkills.map((skill, idx) => (
+                                <div key={idx}>
                                     <p className="bg-gray-800 px-1 py-0.5 rounded-full text-gray-300 shadow-md text-xs">
                                         {skill}
                                     </p>
@@ -112,8 +109,8 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                         <h3 className="text-lg font-semibold tracking-wide">
                             Prerequisites
                         </h3>
-                        {prerequisites.map(prerequisite => (
-                            <p className="text-gray-300 text-medium" key={prerequisite}>
+                        {prerequisites.map((prerequisite, idx) => (
+                            <p className="text-gray-300 text-medium" key={idx}>
                                 {prerequisite}
                             </p>
                         ))}
@@ -146,7 +143,7 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                     </section>
                     {/** course signup section */}
                     <section className="md:hidden">
-                        {userContext?.user ? (
+                        {(userContext?.user) ? (
                             <button
                                 type="submit"
                                 className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
@@ -158,7 +155,7 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                             <button
                                 type="submit"
                                 className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
-                                onClick={() => router.push("/auth/signUp")}
+                                onClick={() => router.push("/auth/register")}
                             >
                                 SignUp for the course
                             </button>
@@ -167,12 +164,10 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                 </div>
             </div>
             <div>
-                {(ssgCourse && courseImages) &&
-                    <StickyCourse
-                        ssgCourse={ssgCourse}
-                        courseImages={courseImages}
-                    />
-                }
+                <StickyCourse
+                    ssgCourse={ssgCourse}
+                    courseImages={courseImages}
+                />
             </div>
 
         </div>

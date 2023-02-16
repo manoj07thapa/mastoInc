@@ -18,7 +18,8 @@ function classNames(...classes: string[]) {
 
 const UserMenu = () => {
     const userContext = useContext(UserContext);
-    // console.log('Context', userContext.user);
+    const router = useRouter();
+
     const handleSignOut = async () => {
         try {
             await Auth.signOut()
@@ -30,8 +31,6 @@ const UserMenu = () => {
         }
     }
 
-    // const group = userContext?.user?.signInUserSession?.accessToken.payload["cognito:groups"];
-    const router = useRouter();
     return (
         <div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -86,7 +85,7 @@ const UserMenu = () => {
                                             active ? "bg-gray-100" : "",
                                             " px-4 py-2 text-sm text-gray-700 w-full text-left flex space-x-4"
                                         )}
-                                        onClick={() => handleSignOut()}
+                                        onClick={handleSignOut}
                                     >
                                         <div className="flex items-center space-x-3">
                                             <ShareIcon className="w-4 h-4 text-pink-600" />

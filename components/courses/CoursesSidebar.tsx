@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 const CourseSidebar = () => {
     const { query } = useRouter();
+
     return (
         <aside className="hidden divide-x sm:block divide-slate-800 divide-opacity-50">
             <nav className="flex items-center sm:flex-col sm:items-start sm:space-y-6 ">

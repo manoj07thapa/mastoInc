@@ -4,13 +4,10 @@ import StepperControl from './StepControl';
 import React, { ReactElement, ReactNode, useState } from 'react'
 import { FormikStepProps } from './Home';
 import { ConnectedFocusError } from 'focus-formik-error'
-import PreviewModal from './PreviewModal';
-
 
 export type FormikStepperProps = FormikConfig<FormikValues> & {
     children: ReactNode[]
 }
-
 
 export function FormikStepper({ children, ...props }: FormikStepperProps) {
     const childrenArray = React.Children.toArray(children) as ReactElement<FormikStepProps>[];

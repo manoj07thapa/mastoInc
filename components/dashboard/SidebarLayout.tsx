@@ -12,11 +12,8 @@ type SidebarLayoutProps = {
 }
 
 const SidebarLayout = ({ children }: SidebarLayoutProps) => {
-    const [open, setOpen] = useState(false);
-
     const router = useRouter();
     const userContext = useContext(UserContext);
-    // console.log("USER", user);
     const group = userContext?.user?.signInUserSession?.accessToken?.payload["cognito:groups"];
 
     return (

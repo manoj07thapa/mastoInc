@@ -28,13 +28,15 @@
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
-      "email"
+      "email",
+      "name",
+      "phone_number"
     ],
     "userpoolClientReadAttributes": [
       "email"
     ],
     "userpoolClientLambdaRole": "mastoi83a449cd_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "83a449cd",
     "resourceName": "mastoinc20083a449cd83a449cd",
     "authSelections": "identityPoolAndUserPool",

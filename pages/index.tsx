@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Auth } from "aws-amplify";
-import LoadingSpinner from '@/components/utils/LoadingSpinner';
 
 
 export default function Home() {
@@ -29,7 +27,6 @@ export default function Home() {
 
           <p>Signout</p>
         </button>
-        {/* <LoadingSpinner /> */}
       </main>
     </>
   )

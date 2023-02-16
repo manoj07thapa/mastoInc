@@ -8,29 +8,20 @@ import { CourseWithImagesProps } from './CourseContainer';
 const StickyCourse = ({ ssgCourse, courseImages }: CourseWithImagesProps) => {
     const router = useRouter();
     const userContext = useContext(UserContext);
-    const { duration, price, time, prerequisites } = ssgCourse
+    const { duration, price, time } = ssgCourse
 
     return (
         <>
             <aside className="sticky top-0 hidden w-1/3 col-span-3 border border-gray-800 shadow-xl xl:right-36 lg:right-6 md:h-2/3 md:block">
-                {courseImages && (
-                    <Image
-                        src={courseImages[0]}
-                        height={234}
-                        width={300}
-                        alt="course image"
-                        className="shadow-md "
-                        priority
-                    />
-                )}
+                <Image
+                    src={courseImages[0]}
+                    height={234}
+                    width={300}
+                    alt="course image"
+                    className="shadow-md "
+                    priority
+                />
                 <div className="pb-5 space-y-3">
-                    {/* <section className="px-4 py-2 lg:bg-gray-800 xl:bg-none">
-                        <h3 className="tracking-wide text-medium">Prerequisite</h3>
-                        {prerequisites.map(prerequisite => (
-                            <p className="text-sm text-gray-400" key={prerequisite}>- {prerequisite}</p>
-
-                        ))}
-                    </section> */}
                     {/** course time section */}
                     <section className="px-4 py-2 border-b border-gray-800">
                         <h3 className="tracking-wide text-medium">Duration </h3>
@@ -60,7 +51,7 @@ const StickyCourse = ({ ssgCourse, courseImages }: CourseWithImagesProps) => {
                             <button
                                 type="submit"
                                 className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
-                                onClick={() => router.push("/auth/signUp")}
+                                onClick={() => router.push("/auth/register")}
                             >
                                 SignUp
                             </button>
