@@ -83,12 +83,12 @@ function Home() {
                 authMode: "AMAZON_COGNITO_USER_POOLS",
             });
             if (res) {
-                console.log("Course has been created");
+
                 // actions.resetForm()
-                console.log("RESPONSECOURSECREATION", res);
+
             }
         } catch (error) {
-            console.log("RESERROR", error);
+
         }
 
     }

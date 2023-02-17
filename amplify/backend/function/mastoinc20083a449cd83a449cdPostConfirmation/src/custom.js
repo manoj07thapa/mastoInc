@@ -22,15 +22,15 @@ exports.handler = async (event, context) => {
 
     try {
       await ddb.putItem(params).promise();
-      console.log("Success");
+
     } catch (err) {
-      console.log("Error", err);
+
     }
 
-    console.log("Success: Everything executed correctly");
+
     context.done(null, event);
   } else {
-    console.log("Error: Nothing was written to DynamoDB");
+
     context.done(null, event);
   }
 };

@@ -24,7 +24,7 @@ function SignUp() {
     const onSubmit = async (values: SignUpProps, { setErrors }: FormikHelpers<SignUpProps>) => {
 
         const { email, password, phoneNumber, fullname } = values;
-        console.log('VALUES', values);
+
 
         try {
             const user = await Auth.signUp({
@@ -36,11 +36,11 @@ function SignUp() {
                     phone_number: phoneNumber,
                 },
             });
-            console.log('SIGNUPUSER', user);
+
 
             router.push("/auth/userconfirmation");
         } catch (error) {
-            console.log('ERROR', error);
+
 
             if (error) {
                 setErrors(error); //toDO: backend validation

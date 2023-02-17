@@ -24,16 +24,16 @@ async function addUserToGroup(username, groupname) {
     Username: username,
   };
 
-  console.log(`Attempting to add ${username} to ${groupname}`);
+
 
   try {
     const result = await cognitoIdentityServiceProvider.adminAddUserToGroup(params).promise();
-    console.log(`Success adding ${username} to ${groupname}`);
+
     return {
       message: `Success adding ${username} to ${groupname}`,
     };
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -45,16 +45,16 @@ async function removeUserFromGroup(username, groupname) {
     Username: username,
   };
 
-  console.log(`Attempting to remove ${username} from ${groupname}`);
+
 
   try {
     const result = await cognitoIdentityServiceProvider.adminRemoveUserFromGroup(params).promise();
-    console.log(`Removed ${username} from ${groupname}`);
+
     return {
       message: `Removed ${username} from ${groupname}`,
     };
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -68,12 +68,12 @@ async function confirmUserSignUp(username) {
 
   try {
     const result = await cognitoIdentityServiceProvider.adminConfirmSignUp(params).promise();
-    console.log(`Confirmed ${username} registration`);
+
     return {
       message: `Confirmed ${username} registration`,
     };
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -86,12 +86,12 @@ async function disableUser(username) {
 
   try {
     const result = await cognitoIdentityServiceProvider.adminDisableUser(params).promise();
-    console.log(`Disabled ${username}`);
+
     return {
       message: `Disabled ${username}`,
     };
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -104,12 +104,12 @@ async function enableUser(username) {
 
   try {
     const result = await cognitoIdentityServiceProvider.adminEnableUser(params).promise();
-    console.log(`Enabled ${username}`);
+
     return {
       message: `Enabled ${username}`,
     };
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -120,13 +120,13 @@ async function getUser(username) {
     Username: username,
   };
 
-  console.log(`Attempting to retrieve information for ${username}`);
+
 
   try {
     const result = await cognitoIdentityServiceProvider.adminGetUser(params).promise();
     return result;
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -138,7 +138,7 @@ async function listUsers(Limit, PaginationToken) {
     ...(PaginationToken && { PaginationToken }),
   };
 
-  console.log('Attempting to list users');
+
 
   try {
     const result = await cognitoIdentityServiceProvider.listUsers(params).promise();
@@ -149,7 +149,7 @@ async function listUsers(Limit, PaginationToken) {
 
     return result;
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -161,7 +161,7 @@ async function listGroups(Limit, PaginationToken) {
     ...(PaginationToken && { PaginationToken }),
   };
 
-  console.log('Attempting to list groups');
+
 
   try {
     const result = await cognitoIdentityServiceProvider.listGroups(params).promise();
@@ -172,7 +172,7 @@ async function listGroups(Limit, PaginationToken) {
 
     return result;
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -185,7 +185,7 @@ async function listGroupsForUser(username, Limit, NextToken) {
     ...(NextToken && { NextToken }),
   };
 
-  console.log(`Attempting to list groups for ${username}`);
+
 
   try {
     const result = await cognitoIdentityServiceProvider.adminListGroupsForUser(params).promise();
@@ -199,7 +199,7 @@ async function listGroupsForUser(username, Limit, NextToken) {
 
     return result;
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -212,13 +212,13 @@ async function listUsersInGroup(groupname, Limit, NextToken) {
     ...(NextToken && { NextToken }),
   };
 
-  console.log(`Attempting to list users in group ${groupname}`);
+
 
   try {
     const result = await cognitoIdentityServiceProvider.listUsersInGroup(params).promise();
     return result;
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }
@@ -230,16 +230,16 @@ async function signUserOut(username) {
     Username: username,
   };
 
-  console.log(`Attempting to signout ${username}`);
+
 
   try {
     const result = await cognitoIdentityServiceProvider.adminUserGlobalSignOut(params).promise();
-    console.log(`Signed out ${username} from all devices`);
+
     return {
       message: `Signed out ${username} from all devices`,
     };
   } catch (err) {
-    console.log(err);
+
     throw err;
   }
 }

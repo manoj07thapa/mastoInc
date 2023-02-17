@@ -67,7 +67,7 @@ const Course = ({ ssrCourses }: { ssrCourses: CourseProps[] }) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [courses, setCourses] = useState<CourseProps[] | []>([]);
-    console.log('courses', courses);
+
 
     const fetchCoursesWithImage = useCallback(async () => {
         try {
@@ -91,7 +91,7 @@ const Course = ({ ssrCourses }: { ssrCourses: CourseProps[] }) => {
             }
 
         } catch (error) {
-            console.log("error", error);
+
             setLoading(false)
         }
     }, [ssrCourses]);

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 // import SlideOverMenu from "./SlideOverMenu";
 import { UserContext } from "../../contexts/UserContext";
 import ThemeSwitcher from '../header/ThemeSwitcher';
+import UserMenu from '../header/UserMenu';
 
 type SidebarLayoutProps = {
     children: ReactNode
@@ -18,19 +19,18 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
 
     return (
         <Fragment>
-            <div className="mx-auto max-w-9xl ">
+            <div className="mx-auto mt-6 max-w-9xl ">
                 <div className="flex flex-col items-start md:container md:relative lg:flex-row ">
-                    <aside className="justify-center hidden transition duration-200 ease-in-out border-r md:sticky md:top-0 md:h-screen md:w-2/12 md:hover:overflow-auto lg:block border-slate-800">
+                    <aside className="justify-center hidden pr-2 transition duration-200 ease-in-out border-r md:sticky md:top-0 md:h-screen md:w-2/12 md:hover:overflow-auto lg:block border-slate-800 lg:pl-5">
                         <div className="space-y-20 ">
                             <div className="w-full ">
                                 <div className='sticky top-0 flex items-center justify-between'>
                                     <Link href="/" className=' md:sticky md:top-0'>
-                                        <div className="flex space-x-6 text-lg font-semibold transition ease-in-out shadow-md bg-slate-900 py-7 text-slate-300 hover:text-slate-200">
+                                        <div className="flex space-x-6 text-lg font-semibold transition ease-in-out shadow-md bg-slate-900 text-slate-300 hover:text-slate-200">
                                             <CakeIcon className="w-6 h-6 text-pink-600 " />
                                             <p className="tracking-wide text-md ">Masto Inc</p>
                                         </div>
                                     </Link>
-                                    <ThemeSwitcher />
                                 </div>
 
                                 <div className="pr-5 mt-12 space-y-5">
@@ -328,8 +328,14 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
 
                     </div> */}
 
-                    <main className=" md:w-10/12 md:mt-0">
-                        {children}
+                    <main className="px-16 md:w-10/12 md:mt-0">
+                        <div className='flex justify-end'>
+                            {userContext?.user && <div className='flex items-center space-x-3'>
+                                <UserMenu />
+                                <ThemeSwitcher />
+                            </div>}
+                        </div>
+                        <div className='mt-12'>{children}</div>
                     </main>
 
                 </div>

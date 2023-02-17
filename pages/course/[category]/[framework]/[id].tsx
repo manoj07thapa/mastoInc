@@ -13,7 +13,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         query: listCourses,
         // authMode: "AWS_IAM",
     });
-    console.log('gspdata', data);
+
     const items: CourseProps[] = data.listCourses.items
     const paths = items.map((course: any) => ({
         params: {
@@ -29,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    console.log('SSGPARAMS', params);
+
     const SSR = withSSRContext();
     const { data } = await SSR.API.graphql({
         query: getCourse,
@@ -66,7 +66,7 @@ const Course = ({ ssgCourse }: { ssgCourse: CourseProps }) => {
             )
             setCourseImageUrl(imageUrls)
         } catch (error) {
-            console.log('CourseImageurlError', error);
+
         }
 
     }, [ssgCourse]);

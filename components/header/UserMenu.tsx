@@ -27,7 +27,7 @@ const UserMenu = () => {
             router.push("/auth/login")
 
         } catch (error) {
-            console.log('Error signing out');
+
         }
     }
 

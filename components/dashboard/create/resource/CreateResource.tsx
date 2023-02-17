@@ -4,6 +4,8 @@ import { Field, Form, Formik, FormikHelpers, ErrorMessage } from 'formik';
 import { ResourceProps } from "@/types/types";
 import { Storage, API } from "aws-amplify";
 import { resourceSchema } from "@/validations/resource/resourceSchema";
+import { pages, sections } from "./resourceData";
+import LoadingSpinner from "@/components/utils/LoadingSpinner";
 
 const CreateResource = ({ }) => {
     const initialValues: ResourceProps = {
@@ -39,12 +41,12 @@ const CreateResource = ({ }) => {
             });
 
             if (res) {
-                console.log("Resource has been created");
-                console.log("RESOURCE", res);
+
+
                 // actions.resetForm();
             }
         } catch (error) {
-            console.log("ERROR", error);
+
 
         }
 
@@ -58,7 +60,7 @@ const CreateResource = ({ }) => {
                 onSubmit={handleSubmit}
                 validationSchema={resourceSchema}
             >
-                {({ errors, isSubmitting }) => (
+                {({ errors, isSubmitting, isValid }) => (
                     <Form className="space-y-5">
                         <div>
                             <label
@@ -87,8 +89,6 @@ const CreateResource = ({ }) => {
                                 name="subtitle"
                                 type="text"
                                 id="subtitle"
-                                rows="2"
-                                as="textarea"
                                 className={`${errors.subtitle && "field-error"} field`}
 
                             />
@@ -106,8 +106,6 @@ const CreateResource = ({ }) => {
                                 name="subtitle1"
                                 type="text"
                                 id="subtitle1"
-                                rows="2"
-                                as="textarea"
                                 className={`${errors.subtitle1 && "field-error"} field`}
                             />
                             <ErrorMessage component="p" name="subtitle1" className="fieldError" />
@@ -123,8 +121,7 @@ const CreateResource = ({ }) => {
                                 name="subtitle2"
                                 type="text"
                                 id="subtitle2"
-                                rows="2"
-                                as="textarea"
+
                                 className={`${errors.subtitle2 && "field-error"} field`}
                             />
                             <ErrorMessage component="p" name="subtitle2" className="fieldError" />
@@ -155,11 +152,18 @@ const CreateResource = ({ }) => {
                                     Page
                                 </label>
                                 <Field
+                                    as="select"
                                     name="page"
                                     type="text"
                                     id="page"
-                                    className={`${errors.page && "field-error"} field`}
-                                />
+                                    className={` field ${errors.page && "field-error"}`}
+                                >
+                                    {pages.map((option) => (
+                                        <option key={option.key} value={option.value} className="py-3 space-y-1 rounded-md shadow bg-slate-800 text-slate-200 ">
+                                            {option.key}
+                                        </option>
+                                    ))}
+                                </Field>
                                 <ErrorMessage component="p" name="page" className="fieldError" />
                             </div>
                             <div className="sm:w-1/2">
@@ -170,11 +174,18 @@ const CreateResource = ({ }) => {
                                     Section
                                 </label>
                                 <Field
+                                    as="select"
                                     name="section"
                                     type="text"
                                     id="section"
-                                    className={`${errors.section && "field-error"} field`}
-                                />
+                                    className={` field ${errors.section && "field-error"}`}
+                                >
+                                    {sections.map((option) => (
+                                        <option key={option.key} value={option.value} className="py-3 space-y-1 rounded-md shadow bg-slate-800 text-slate-200 ">
+                                            {option.key}
+                                        </option>
+                                    ))}
+                                </Field>
                                 <ErrorMessage component="p" name="section" className="fieldError" />
                             </div>
                         </div>
@@ -185,12 +196,12 @@ const CreateResource = ({ }) => {
 
                         <div className="mt-12">
                             <button
-                                disabled={isSubmitting}
+                                disabled={isSubmitting || !isValid}
                                 type="submit"
-                                className={`${isSubmitting ? "bg-gray-800" : ""
+                                className={`${isSubmitting ? "bg-slate-600" : ""
                                     }  text-medium w-full rounded-md bg-pink-500 px-7 py-4 font-semibold uppercase  tracking-wider text-white hover:bg-pink-600 `}
                             >
-                                Submit
+                                {isSubmitting ? <LoadingSpinner /> : "Submit"}
                             </button>
                         </div>
                     </Form>

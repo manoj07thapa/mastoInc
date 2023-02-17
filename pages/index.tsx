@@ -1,8 +1,16 @@
 import Head from 'next/head'
-import { Auth } from "aws-amplify";
+import { withSSRContext } from "aws-amplify";
+import { GetStaticProps } from 'next';
+import { listResources } from '@/src/graphql/queries';
+import { ResourceProps } from '../types/types';
+import HeroSection from '@/components/home/HeroSection';
 
+export default function Home({ resources }: { resources: ResourceProps[] }) {
 
-export default function Home() {
+  var heroResources = resources.filter(function (item) {
+    return item.section === "hero";
+  });
+
   return (
     <>
       <Head>
@@ -11,23 +19,35 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="text-2xl text-red-900">
-        Musto
+      <main className="h-full px-4 mx-auto space-y-32 max-w-7xl sm:px-6 md:space-y-48">
+        <section className="">
+          <HeroSection heroResources={heroResources} />
+        </section>
+        <div>
+          <pre>{JSON.stringify(resources, null, 4)}</pre>
+        </div>
 
-        <button
-          type="button"
 
-          onClick={() => {
-            Auth.signOut();
-
-          }}
-
-          className='px-2 py-2 mt-12 ml-12 text-white bg-red-500 ron'
-        >
-
-          <p>Signout</p>
-        </button>
       </main>
     </>
   )
 }
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const SSR = withSSRContext();
+  const filter = {
+    page: { eq: "home" }
+  }
+  const { data } = await SSR.API.graphql({
+    query: listResources,
+    variables: { filter }
+  });
+
+
+  const resources: ResourceProps[] = data.listResources.items
+  return {
+    props: {
+      resources
+    },
+  };
+};

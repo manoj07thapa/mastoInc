@@ -31,6 +31,7 @@ export function MultipleFileUploadField() {
         accept: {
             'image/png': ['.png'],
             'image/jpeg': ['.jpeg'],
+            'image/svg': ['.svg'],
         },
         maxSize: 300 * 1024, // 300KB
     });

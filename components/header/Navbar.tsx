@@ -27,7 +27,7 @@ export default function Navbar() {
             close()
 
         } catch (error) {
-            console.log('Error signing out');
+
 
         }
 

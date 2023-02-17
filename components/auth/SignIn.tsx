@@ -29,12 +29,12 @@ function SignIn() {
                 username: email,
                 password,
             });
-            console.log('USER', user);
+
 
             userContext?.setUser(user);
             router.push("/");
         } catch (error) {
-            console.log('LOGINERROR', error);
+
 
             if (error) {
                 setErrors(error); //toDO: backend validation use toast 

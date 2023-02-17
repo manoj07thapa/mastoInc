@@ -24,7 +24,7 @@ function ForgotPassword() {
 
             router.push("/auth/createnewpassword");
         } catch (error) {
-            console.log(error);
+
 
             if (error) {
                 setErrors(error); //toDO: backend validation

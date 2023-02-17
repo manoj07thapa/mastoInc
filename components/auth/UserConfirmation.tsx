@@ -26,7 +26,7 @@ function ConfirmUser() {
 
             router.push("/auth/login");
         } catch (error) {
-            console.log('Usersignupconfirm', error);
+
 
             if (error) {
                 setErrors(error); //toDO: backend validation
