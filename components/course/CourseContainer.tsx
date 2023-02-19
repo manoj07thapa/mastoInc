@@ -1,16 +1,21 @@
-import StickyCourse from "./StickyCourse";
-import Syllabus from './Syllabus';
 import { CourseProps } from '../../types/types';
 import Image from 'next/image';
 import { CheckIcon, StarIcon } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/UserContext";
 import { useRouter } from "next/router";
-
+import { createUserCourses } from "@/src/graphql/mutations";
+import { API } from "aws-amplify";
+import StickyCourse from "./StickyCourse";
+import Syllabuses from './Syllabus';
+import { getUser } from '@/src/graphql/queries';
+import { CreateUserCoursesInput, GetUserQuery } from '@/src/API';
+import { Course } from '../../src/API';
 
 export type CourseWithImagesProps = {
-    ssgCourse: CourseProps,
-    courseImages: string[]
+    ssgCourse: Course,
+    courseImages: string[],
+    subscribeToCourse?: () => void
 }
 
 const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => {
@@ -19,6 +24,48 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
     const {
         title, subtitle, tutor, tutorWho, duration, level, courseObjectives, relatedSkills, syllabus, time, price, prerequisites
     } = ssgCourse
+
+    const subscribeToCourse = async () => {
+        if (userContext?.user) {
+            const userId = userContext?.user?.attributes.sub
+            const courseId = ssgCourse.id
+            try {
+                const response = (await API.graphql({
+                    query: getUser,
+                    variables: {
+                        id: userId
+                    },
+                    authMode: "AMAZON_COGNITO_USER_POOLS",
+                })) as { data: GetUserQuery }
+                console.log('ResUser', response);
+                // const data1 = data.getUser.enrolledCourses.items
+                const usersCourses = response.data.getUser?.enrolledCourses?.items.map(item => item?.courseId)
+
+                console.log('userCoursestest', usersCourses);
+                //avoid enrolling already enrolled users
+                if (!usersCourses?.includes(courseId)) {
+                    const res = (await API.graphql({
+                        query: createUserCourses,
+                        variables: {
+                            input: {
+                                courseId,
+                                userId,
+                            },
+                        },
+                        authMode: "AMAZON_COGNITO_USER_POOLS",
+                    })) as { data: CreateUserCoursesInput };
+                    console.log('subscribeToCourseRes', res);
+                } else {
+                    return "You are already enrolled to this course."
+                }
+            } catch (error) {
+                console.log('subscribeToCourseERROR', error);
+            }
+        } else {
+            router.push('/auth/register')
+        }
+
+    };
     return (
         <div className="flex pb-12 ">
             <div className="w-full">
@@ -74,7 +121,7 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                         </h3>
                         <div className="mt-2">
                             <div className="grid-cols-2 gap-5 pt-1 pl-0 space-y-4 md:grid">
-                                {courseObjectives.map((item, idx) => (
+                                {courseObjectives?.map((item, idx) => (
                                     <div key={idx} className="flex items-center space-x-3">
                                         <CheckIcon className="w-3 h-3 text-indigo-700" />
                                         <p className="text-sm text-gray-300">{item}</p>
@@ -90,7 +137,7 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                             Related Stacks
                         </h3>
                         <div className="flex items-center mt-2 space-x-3">
-                            {relatedSkills.map((skill, idx) => (
+                            {relatedSkills?.map((skill, idx) => (
                                 <div key={idx}>
                                     <p className="bg-gray-800 px-1 py-0.5 rounded-full text-gray-300 shadow-md text-xs">
                                         {skill}
@@ -102,14 +149,14 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
 
                     {/** course content section */}
                     <section className="w-5/6 px-2 py-4 border border-gray-800">
-                        <Syllabus syllabus={syllabus} />
+                        {syllabus && <Syllabuses syllabus={syllabus} />}
                     </section>
                     {/** course required knowledge section */}
                     <section className="">
                         <h3 className="text-lg font-semibold tracking-wide">
                             Prerequisites
                         </h3>
-                        {prerequisites.map((prerequisite, idx) => (
+                        {prerequisites?.map((prerequisite, idx) => (
                             <p className="text-gray-300 text-medium" key={idx}>
                                 {prerequisite}
                             </p>
@@ -143,23 +190,14 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                     </section>
                     {/** course signup section */}
                     <section className="md:hidden">
-                        {(userContext?.user) ? (
-                            <button
-                                type="submit"
-                                className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
-                            // onClick={addCourseToUser}
-                            >
-                                Enroll Now
-                            </button>
-                        ) : (
-                            <button
-                                type="submit"
-                                className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
-                                onClick={() => router.push("/auth/register")}
-                            >
-                                SignUp for the course
-                            </button>
-                        )}
+                        <button
+                            type="submit"
+                            className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
+                            onClick={subscribeToCourse}
+                        >
+                            Enroll Now
+                        </button>
+
                     </section>
                 </div>
             </div>
@@ -167,6 +205,7 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                 <StickyCourse
                     ssgCourse={ssgCourse}
                     courseImages={courseImages}
+                    subscribeToCourse={subscribeToCourse}
                 />
             </div>
 

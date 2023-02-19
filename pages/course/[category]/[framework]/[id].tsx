@@ -6,15 +6,16 @@ import { withSSRContext, Storage } from 'aws-amplify';
 import Head from 'next/head';
 import { useCallback, useEffect, useState } from 'react';
 import CourseContainer from '@/components/course/CourseContainer';
+import { GetCourseQuery, Course } from '../../../../src/API';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const SSR = withSSRContext();
+
     const { data } = await SSR.API.graphql({
         query: listCourses,
-        // authMode: "AWS_IAM",
     });
 
-    const items: CourseProps[] = data.listCourses.items
+    const items = data.listCourses.items
     const paths = items.map((course: any) => ({
         params: {
             id: course.id,
@@ -29,21 +30,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-
     const SSR = withSSRContext();
-    const { data } = await SSR.API.graphql({
+
+    const { data } = (await SSR.API.graphql({
         query: getCourse,
         variables: {
             id: params?.id
         },
-        // authMode: "AWS_IAM",
-    });
+    })) as { data: GetCourseQuery };
     if (!data) {
         return {
             notFound: true,
         }
     }
-    const ssgCourse: CourseProps = data.getCourse
+    const ssgCourse = data.getCourse
     return {
         props: {
             ssgCourse
@@ -52,19 +52,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
 }
 
-
-const Course = ({ ssgCourse }: { ssgCourse: CourseProps }) => {
+const SingleCourse = ({ ssgCourse }: { ssgCourse: Course }) => {
     const [courseImageUrl, setCourseImageUrl] = useState<string[] | []>([]);
 
     const fetchCourseImageUrl = useCallback(async () => {
         try {
-            const imageUrls = await Promise.all(
-                ssgCourse.images.map(async (image) => {
-                    const img = await Storage.get(image)
-                    return img
-                })
-            )
-            setCourseImageUrl(imageUrls)
+            if (ssgCourse.images) {
+                const imageUrls = await Promise.all(
+                    ssgCourse.images.map(async (image) => {
+                        const img = await Storage.get(image)
+                        return img
+                    })
+                )
+                setCourseImageUrl(imageUrls)
+            }
         } catch (error) {
 
         }
@@ -95,4 +96,4 @@ const Course = ({ ssgCourse }: { ssgCourse: CourseProps }) => {
         </>
     );
 }
-export default Course;
+export default SingleCourse;

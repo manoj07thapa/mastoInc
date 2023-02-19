@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
@@ -12,14 +13,6 @@ export const createUser = /* GraphQL */ `
       email
       phone_number
       enrolledCourses {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -38,14 +31,6 @@ export const updateUser = /* GraphQL */ `
       email
       phone_number
       enrolledCourses {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -64,14 +49,6 @@ export const deleteUser = /* GraphQL */ `
       email
       phone_number
       enrolledCourses {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -107,14 +84,6 @@ export const createCourse = /* GraphQL */ `
         duration
       }
       enrollees {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -150,14 +119,6 @@ export const updateCourse = /* GraphQL */ `
         duration
       }
       enrollees {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -193,14 +154,6 @@ export const deleteCourse = /* GraphQL */ `
         duration
       }
       enrollees {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -282,9 +235,6 @@ export const createUserCourses = /* GraphQL */ `
         username
         email
         phone_number
-        enrolledCourses {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -305,14 +255,6 @@ export const createUserCourses = /* GraphQL */ `
         prerequisites
         level
         time
-        syllabus {
-          topic
-          description
-          duration
-        }
-        enrollees {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -336,9 +278,6 @@ export const updateUserCourses = /* GraphQL */ `
         username
         email
         phone_number
-        enrolledCourses {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -359,14 +298,6 @@ export const updateUserCourses = /* GraphQL */ `
         prerequisites
         level
         time
-        syllabus {
-          topic
-          description
-          duration
-        }
-        enrollees {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -390,9 +321,6 @@ export const deleteUserCourses = /* GraphQL */ `
         username
         email
         phone_number
-        enrolledCourses {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -413,14 +341,6 @@ export const deleteUserCourses = /* GraphQL */ `
         prerequisites
         level
         time
-        syllabus {
-          topic
-          description
-          duration
-        }
-        enrollees {
-          nextToken
-        }
         createdAt
         updatedAt
       }

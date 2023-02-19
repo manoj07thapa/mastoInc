@@ -5,14 +5,14 @@ import { useContext } from "react";
 import { CourseWithImagesProps } from './CourseContainer';
 
 
-const StickyCourse = ({ ssgCourse, courseImages }: CourseWithImagesProps) => {
+const StickyCourse = ({ ssgCourse, courseImages, subscribeToCourse }: CourseWithImagesProps) => {
     const router = useRouter();
     const userContext = useContext(UserContext);
     const { duration, price, time } = ssgCourse
 
     return (
         <>
-            <aside className="sticky top-0 hidden w-1/3 col-span-3 border border-gray-800 shadow-xl xl:right-36 lg:right-6 md:h-2/3 md:block">
+            <aside className="sticky top-0 hidden w-2/3 col-span-3 border border-gray-800 shadow-xl xl:right-36 lg:right-6 md:h-2/3 md:block">
                 <Image
                     src={courseImages[0]}
                     height={234}
@@ -39,23 +39,14 @@ const StickyCourse = ({ ssgCourse, courseImages }: CourseWithImagesProps) => {
                     </section>
                     {/** course signup section */}
                     <section className="px-4 py-2">
-                        {userContext?.user ? (
-                            <button
-                                type="submit"
-                                className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
-                            // onClick={addCourseToUser}
-                            >
-                                Enroll Now
-                            </button>
-                        ) : (
-                            <button
-                                type="submit"
-                                className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
-                                onClick={() => router.push("/auth/register")}
-                            >
-                                SignUp
-                            </button>
-                        )}
+                        <button
+                            type="submit"
+                            className="w-full px-4 py-2 transition ease-in-out bg-pink-500 rounded-md shadow-md hover:bg-pink-600"
+                            onClick={subscribeToCourse}
+                        >
+                            Enroll Now
+                        </button>
+
                     </section>
                 </div>
             </aside>

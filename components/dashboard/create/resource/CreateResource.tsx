@@ -32,7 +32,6 @@ const CreateResource = ({ }) => {
                 );
                 values.s3ImageKeys = imageKeys;
                 delete values.images
-
             }
             const res = await API.graphql({
                 query: createResource,
@@ -41,8 +40,6 @@ const CreateResource = ({ }) => {
             });
 
             if (res) {
-
-
                 // actions.resetForm();
             }
         } catch (error) {
@@ -54,7 +51,6 @@ const CreateResource = ({ }) => {
 
     return (
         <>
-
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}

@@ -35,6 +35,7 @@ function SignIn() {
             router.push("/");
         } catch (error) {
 
+            console.log(error);
 
             if (error) {
                 setErrors(error); //toDO: backend validation use toast 
@@ -77,7 +78,7 @@ function SignIn() {
                                                 name="email"
                                                 type="email"
                                                 id="username"
-                                                className={`w-full rounded-md bg-violet-100 text-lg font-medium ${errors.email && "ring-2 ring-offset-1 ring-red-500"}`}
+                                                className={`field ${errors.email && "field-error"}`}
                                             />
                                             <div className="mt-1 text-xs text-red-500">
                                                 {errors.email && errors.email}
@@ -94,7 +95,7 @@ function SignIn() {
                                                 name="password"
                                                 type="password"
                                                 id="password"
-                                                className={`w-full rounded-md bg-violet-100 text-lg font-medium ${errors.password && "ring-2 ring-offset-1 ring-red-500"}`}
+                                                className={`field ${errors.email && "field-error"}`}
                                             />
                                             <div className="mt-1 text-xs text-red-500">
                                                 {errors.password && errors.password}

@@ -1,14 +1,15 @@
 import { ChevronUpIcon } from '@heroicons/react/24/outline';
 import { SyllabusProps } from '../../types/types';
 import { Disclosure, Transition } from "@headlessui/react";
+import { Syllabus } from '@/src/API';
 
 
-const Syllabus = ({ syllabus }: { syllabus: SyllabusProps[] }) => {
+const Syllabuses = ({ syllabus }: { syllabus: Syllabus[] }) => {
     return (
         <div className="w-full mt-2">
             <h3 className="text-lg font-semibold tracking-wide">Course Content</h3>
             <div className="mt-4 space-y-4 ">
-                {syllabus.map((content, idx) => (
+                {syllabus?.map((content, idx) => (
                     <Disclosure key={idx}>
                         {({ open }) => (
                             <>
@@ -42,4 +43,4 @@ const Syllabus = ({ syllabus }: { syllabus: SyllabusProps[] }) => {
         </div>
     );
 }
-export default Syllabus;
+export default Syllabuses;

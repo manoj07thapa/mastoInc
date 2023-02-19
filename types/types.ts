@@ -65,3 +65,5 @@ export type PageWithLayout = NextPage & {
     getLayout: (page: ReactElement) => ReactNode
 
 }
+
+

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Bars3CenterLeftIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { courses, solutions } from "./headerData/header/navData";
+import { courses } from "./headerData/header/navData";
 import UserMenu from "./UserMenu";
 import { Auth } from "aws-amplify";
 import { UserContext } from "../../contexts/UserContext";
@@ -52,81 +52,13 @@ export default function Navbar() {
                     </div>
                     {/**nav menu as popovers */}
                     <Popover.Group as="nav" className="hidden space-x-10 md:flex md:items-center">
-                        <Popover className="relative ">
-                            {({ open }) => (
-                                <>
-                                    <Popover.Button
-                                        className={classNames(
-                                            open ? "text-slate-900" : "text-slate-700",
-                                            "group rounded-md inline-flex items-center text-base font-medium hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        )}
-                                    >
-                                        <span>Solutions</span>
-                                        <ChevronDownIcon
-                                            className={classNames(
-                                                open ? "text-gray-600" : "text-gray-400",
-                                                "ml-2 h-5 w-5 group-hover:text-gray-500"
-                                            )}
-                                            aria-hidden="true"
-                                        />
-                                    </Popover.Button>
-
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-200"
-                                        enterFrom="opacity-0 translate-y-1"
-                                        enterTo="opacity-100 translate-y-0"
-                                        leave="transition ease-in duration-150"
-                                        leaveFrom="opacity-100 translate-y-0"
-                                        leaveTo="opacity-0 translate-y-1"
-                                    >
-                                        <Popover.Panel className="absolute z-10 w-screen max-w-4xl px-2 mt-3 -ml-4 transform sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                                            {({ close }) => (
-                                                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                                                    <div className="relative grid grid-cols-3 gap-6 px-5 py-6 bg-violet-100 dark:bg-slate-800 sm:gap-8 sm:p-8">
-                                                        {solutions.map((item) => (
-                                                            <Popover.Button
-                                                                key={item.name}
-                                                                className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-100"
-                                                                as={Link}
-                                                                href={`/solutions/${item.href}`}
-                                                            >
-                                                                <div
-
-                                                                >
-                                                                    <div className="flex">
-                                                                        <item.icon
-                                                                            className="flex-shrink-0 w-6 h-6 text-indigo-600"
-                                                                            aria-hidden="true"
-                                                                        />
-                                                                        <div className="flex flex-col items-start ml-4">
-                                                                            <p className="text-base font-medium text-gray-900">
-                                                                                {item.name}
-                                                                            </p>
-                                                                            <p className="mt-1 text-sm text-gray-500">
-                                                                                {item.description}
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </Popover.Button>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </Popover.Panel>
-                                    </Transition>
-                                </>
-                            )}
-                        </Popover>
-
                         <Popover className="relative">
                             {({ open }) => (
                                 <>
                                     <Popover.Button
                                         className={classNames(
                                             open ? "text-slate-100" : "text-slate-200",
-                                            "group rounded-md inline-flex items-center text-base font-medium hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+                                            "group rounded-md inline-flex items-center text-base font-normal hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
                                         )}
                                     >
                                         <span>Courses</span>
@@ -185,9 +117,16 @@ export default function Navbar() {
                                 </>
                             )}
                         </Popover>
-                        <Link href="/contact" className="text-base font-medium transition ease-in-out hover:text-gray-200">
+                        <Link href="/team" className="text-base font-normal transition ease-in-out hover:text-slate-200">
+                            Team
+                        </Link>
+                        <Link href="/aboutus" className="text-base font-normal transition ease-in-out hover:text-slate-200">
+                            About Us
+                        </Link>
+                        <Link href="/contact" className="text-base font-normal transition ease-in-out hover:text-slate-200">
                             Contact
                         </Link>
+
                     </Popover.Group>
 
                     {/**toggle right part of nav bar according to user's presence */}
@@ -242,30 +181,6 @@ export default function Navbar() {
                                                 <XMarkIcon className="w-6 h-6" aria-hidden="true" />
                                             </Popover.Button>
                                         </div>
-                                    </div>
-                                    <div className="mt-6">
-                                        <h4 className="pb-6 font-semibold tracking-wide text-gray-600 text-md">
-                                            Solutions
-                                        </h4>
-                                        <nav className="grid gap-y-8">
-                                            {solutions.map((item) => (
-                                                <button
-                                                    key={item.name}
-                                                    onClick={() => {
-                                                        router.push(`/solutions/${item.href}`), close();
-                                                    }}
-                                                    className="flex items-center p-3 -m-3 transition ease-in-out rounded-md hover:bg-gray-100"
-                                                >
-                                                    <item.icon
-                                                        className="flex-shrink-0 w-6 h-6 text-indigo-600"
-                                                        aria-hidden="true"
-                                                    />
-                                                    <span className="ml-3 text-base font-medium text-gray-900">
-                                                        {item.name}
-                                                    </span>
-                                                </button>
-                                            ))}
-                                        </nav>
                                     </div>
                                 </div>
                                 <div className="px-5 py-6 mt-3 space-y-3 ">

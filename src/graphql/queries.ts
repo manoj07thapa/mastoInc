@@ -1,3 +1,4 @@
+/* tslint:disable */
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
@@ -9,14 +10,6 @@ export const getUser = /* GraphQL */ `
       email
       phone_number
       enrolledCourses {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -36,9 +29,6 @@ export const listUsers = /* GraphQL */ `
         username
         email
         phone_number
-        enrolledCourses {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -71,14 +61,6 @@ export const getCourse = /* GraphQL */ `
         duration
       }
       enrollees {
-        items {
-          id
-          userId
-          courseId
-          createdAt
-          updatedAt
-          username
-        }
         nextToken
       }
       createdAt
@@ -110,14 +92,6 @@ export const listCourses = /* GraphQL */ `
         prerequisites
         level
         time
-        syllabus {
-          topic
-          description
-          duration
-        }
-        enrollees {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -177,9 +151,6 @@ export const getUserCourses = /* GraphQL */ `
         username
         email
         phone_number
-        enrolledCourses {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -200,14 +171,6 @@ export const getUserCourses = /* GraphQL */ `
         prerequisites
         level
         time
-        syllabus {
-          topic
-          description
-          duration
-        }
-        enrollees {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -228,34 +191,6 @@ export const listUserCourses = /* GraphQL */ `
         id
         userId
         courseId
-        user {
-          id
-          username
-          email
-          phone_number
-          createdAt
-          updatedAt
-        }
-        course {
-          id
-          title
-          subtitle
-          category
-          images
-          price
-          language
-          tutor
-          tutorWho
-          relatedSkills
-          courseObjectives
-          duration
-          framework
-          prerequisites
-          level
-          time
-          createdAt
-          updatedAt
-        }
         createdAt
         updatedAt
         username
@@ -283,34 +218,6 @@ export const userCoursesByUserId = /* GraphQL */ `
         id
         userId
         courseId
-        user {
-          id
-          username
-          email
-          phone_number
-          createdAt
-          updatedAt
-        }
-        course {
-          id
-          title
-          subtitle
-          category
-          images
-          price
-          language
-          tutor
-          tutorWho
-          relatedSkills
-          courseObjectives
-          duration
-          framework
-          prerequisites
-          level
-          time
-          createdAt
-          updatedAt
-        }
         createdAt
         updatedAt
         username
@@ -338,34 +245,6 @@ export const userCoursesByCourseId = /* GraphQL */ `
         id
         userId
         courseId
-        user {
-          id
-          username
-          email
-          phone_number
-          createdAt
-          updatedAt
-        }
-        course {
-          id
-          title
-          subtitle
-          category
-          images
-          price
-          language
-          tutor
-          tutorWho
-          relatedSkills
-          courseObjectives
-          duration
-          framework
-          prerequisites
-          level
-          time
-          createdAt
-          updatedAt
-        }
         createdAt
         updatedAt
         username

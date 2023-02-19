@@ -37,7 +37,6 @@ function SignUp() {
                 },
             });
 
-
             router.push("/auth/userconfirmation");
         } catch (error) {
 
@@ -48,14 +47,14 @@ function SignUp() {
         }
     };
     return (
-        <div className=" flex  justify-between ">
+        <div className="flex justify-between ">
             <div className="mt-[500px] flex -skew-y-12  flex-col ">
-                <div className="h-10 w-2 bg-pink-500 mix-blend-multiply sm:w-12 md:w-24 lg:w-40"></div>
-                <div className="-mt-4 h-10 w-4 bg-indigo-500 mix-blend-multiply sm:w-16 md:w-32 lg:w-48"></div>
+                <div className="w-2 h-10 bg-pink-500 mix-blend-multiply sm:w-12 md:w-24 lg:w-40"></div>
+                <div className="w-4 h-10 -mt-4 bg-indigo-500 mix-blend-multiply sm:w-16 md:w-32 lg:w-48"></div>
             </div>
-            <div className="w-full max-w-md lg:max-w-lg mt-12">
-                <div className=" mt-4 rounded-md bg-slate-800 px-12 py-10 shadow-md">
-                    <h3 className="text-lg leading-7 font-bold tracking-wide  text-left pb-2  text-slate-100">
+            <div className="w-full max-w-md mt-12 lg:max-w-lg">
+                <div className="px-12 py-10 mt-4 rounded-md shadow-md bg-slate-800">
+                    <h3 className="pb-2 text-lg font-bold leading-7 tracking-wide text-left text-slate-100">
                         Register for a new account
                     </h3>
                     <Formik
@@ -69,7 +68,7 @@ function SignUp() {
                                     <div>
                                         <label
                                             htmlFor="fullname"
-                                            className="mb-1 block text-sm font-semibold text-gray-500"
+                                            className="block mb-1 text-sm font-semibold text-gray-500"
                                         >
                                             Full Name
                                         </label>
@@ -86,7 +85,7 @@ function SignUp() {
                                     <div>
                                         <label
                                             htmlFor="email"
-                                            className="mb-1 block text-sm font-semibold text-gray-500"
+                                            className="block mb-1 text-sm font-semibold text-gray-500"
                                         >
                                             Email
                                         </label>
@@ -103,7 +102,7 @@ function SignUp() {
                                     <div>
                                         <label
                                             htmlFor="password "
-                                            className="mb-1 block text-sm font-semibold text-gray-500"
+                                            className="block mb-1 text-sm font-semibold text-gray-500"
                                         >
                                             Password
                                         </label>
@@ -120,7 +119,7 @@ function SignUp() {
                                     <div>
                                         <label
                                             htmlFor="phoneNumber"
-                                            className="mb-1 block text-sm font-semibold text-gray-500"
+                                            className="block mb-1 text-sm font-semibold text-gray-500"
                                         >
                                             Phone Number
                                         </label>
@@ -134,10 +133,10 @@ function SignUp() {
                                             {errors.phoneNumber && errors.phoneNumber}
                                         </div>
                                     </div>
-                                    <div className=" text-right ">
+                                    <div className="text-right ">
                                         <button
                                             type="submit"
-                                            className=" text-medium mt-6 w-full rounded-md bg-pink-600 px-4 py-2 uppercase tracking-wider text-white transition ease-in-out hover:bg-pink-700 focus:outline-none"
+                                            className="w-full px-4 py-2 mt-6 tracking-wider text-white uppercase transition ease-in-out bg-pink-600 rounded-md text-medium hover:bg-pink-700 focus:outline-none"
                                         >
                                             Register
                                         </button>
@@ -148,15 +147,15 @@ function SignUp() {
                     </Formik>
                     {/* <hr className="mt-5 text-gray-900" /> */}
                 </div>
-                <div className="mt-6 flex items-center space-x-1 px-4">
+                <div className="flex items-center px-4 mt-6 space-x-1">
                     <p className="text-white">Already have an account?</p>
                     <Link href="/auth/login" className="text-sm font-semibold text-indigo-500">
                         Login
                     </Link>
                 </div>
             </div>
-            <div className="mt-9 flex -skew-y-12  flex-col ">
-                <div className="h-10 w-4 bg-indigo-500 sm:w-16 md:w-32 lg:w-48 "></div>
+            <div className="flex flex-col -skew-y-12 mt-9 ">
+                <div className="w-4 h-10 bg-indigo-500 sm:w-16 md:w-32 lg:w-48 "></div>
             </div>
         </div>
     );
