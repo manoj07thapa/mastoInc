@@ -6,9 +6,10 @@ import { Storage, API } from "aws-amplify";
 import { resourceSchema } from "@/validations/resource/resourceSchema";
 import { pages, sections } from "./resourceData";
 import LoadingSpinner from "@/components/utils/LoadingSpinner";
+import { CreateResourceInput } from "@/types/amplifyCodegen/codegenTypes";
 
 const CreateResource = ({ }) => {
-    const initialValues: ResourceProps = {
+    const initialValues: CreateResourceInput = {
         title: "",
         subtitle: "",
         subtitle1: "",
@@ -20,26 +21,28 @@ const CreateResource = ({ }) => {
         section: "",
     };
 
-    const handleSubmit = async (values: ResourceProps, actions: FormikHelpers<ResourceProps>) => {
+    const handleSubmit = async (values: CreateResourceInput, actions: FormikHelpers<CreateResourceInput>) => {
         try {
             //uploading the image to s3 one at a time with the file name as the key
             if (values.images) {
                 const imageKeys = await Promise.all(
                     values.images.map(async (file) => {
-                        const key = await Storage.put(file.name, file);
+                        const key = await Storage.put(file?.name, file);
                         return key.key;
                     })
                 );
                 values.s3ImageKeys = imageKeys;
                 delete values.images
             }
-            const res = await API.graphql({
+            const res = (await API.graphql({
                 query: createResource,
                 variables: { input: values },
                 authMode: "AMAZON_COGNITO_USER_POOLS",
-            });
+            })) as { data: CreateResourceInput };
 
             if (res) {
+                console.log('res', res);
+
                 // actions.resetForm();
             }
         } catch (error) {

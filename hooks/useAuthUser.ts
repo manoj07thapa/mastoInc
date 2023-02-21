@@ -4,6 +4,7 @@ import { UserProp } from '@/types/types';
 
 export function useAuthUser() {
     const [user, setUser] = useState<UserProp | null>(null);
+
     useEffect(() => {
         async function authListner() {
             const user = await Auth.currentAuthenticatedUser();

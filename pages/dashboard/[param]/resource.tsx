@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { CubeTransparentIcon } from "@heroicons/react/24/outline";
 import SidebarLayout from "@/components/dashboard/SidebarLayout";
 import { ReactElement } from "react";
 import { PageWithLayout } from "@/types/types";

@@ -11,6 +11,7 @@ export const createUser = /* GraphQL */ `
       username
       email
       phone_number
+      name
       enrolledCourses {
         items {
           id
@@ -18,7 +19,8 @@ export const createUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -37,6 +39,7 @@ export const updateUser = /* GraphQL */ `
       username
       email
       phone_number
+      name
       enrolledCourses {
         items {
           id
@@ -44,7 +47,8 @@ export const updateUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -63,6 +67,7 @@ export const deleteUser = /* GraphQL */ `
       username
       email
       phone_number
+      name
       enrolledCourses {
         items {
           id
@@ -70,7 +75,8 @@ export const deleteUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -113,7 +119,8 @@ export const createCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -156,7 +163,8 @@ export const updateCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -199,7 +207,8 @@ export const deleteCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -282,6 +291,7 @@ export const createUserCourses = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -318,7 +328,8 @@ export const createUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      username
+      name
+      tutor
     }
   }
 `;
@@ -336,6 +347,7 @@ export const updateUserCourses = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -372,7 +384,8 @@ export const updateUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      username
+      name
+      tutor
     }
   }
 `;
@@ -390,6 +403,7 @@ export const deleteUserCourses = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -426,7 +440,8 @@ export const deleteUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      username
+      name
+      tutor
     }
   }
 `;

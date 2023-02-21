@@ -1,19 +1,18 @@
-import { CourseProps } from '../../types/types';
 import Image from 'next/image';
 import { CheckIcon, StarIcon } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/UserContext";
 import { useRouter } from "next/router";
-import { createUserCourses } from "@/src/graphql/mutations";
 import { API } from "aws-amplify";
 import StickyCourse from "./StickyCourse";
+import { createUserCourses } from '@/src/graphql/mutations.js'
 import Syllabuses from './Syllabus';
 import { getUser } from '@/src/graphql/queries';
-import { CreateUserCoursesInput, GetUserQuery } from '@/src/API';
-import { Course } from '../../src/API';
+import { CreateUserCoursesInput, GetUserQuery } from '@/types/amplifyCodegen/codegenTypes';
+import { CourseType } from '../../types/amplifyCodegen/APITypes';
 
 export type CourseWithImagesProps = {
-    ssgCourse: Course,
+    ssgCourse: CourseType,
     courseImages: string[],
     subscribeToCourse?: () => void
 }
@@ -24,6 +23,7 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
     const {
         title, subtitle, tutor, tutorWho, duration, level, courseObjectives, relatedSkills, syllabus, time, price, prerequisites
     } = ssgCourse
+
 
     const subscribeToCourse = async () => {
         if (userContext?.user) {
@@ -38,8 +38,7 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                     authMode: "AMAZON_COGNITO_USER_POOLS",
                 })) as { data: GetUserQuery }
                 console.log('ResUser', response);
-                // const data1 = data.getUser.enrolledCourses.items
-                const usersCourses = response.data.getUser?.enrolledCourses?.items.map(item => item?.courseId)
+                const usersCourses = response?.data?.getUser?.enrolledCourses?.items.map(item => item?.courseId)
 
                 console.log('userCoursestest', usersCourses);
                 //avoid enrolling already enrolled users
@@ -55,8 +54,6 @@ const CourseContainer = ({ ssgCourse, courseImages }: CourseWithImagesProps) => 
                         authMode: "AMAZON_COGNITO_USER_POOLS",
                     })) as { data: CreateUserCoursesInput };
                     console.log('subscribeToCourseRes', res);
-                } else {
-                    return "You are already enrolled to this course."
                 }
             } catch (error) {
                 console.log('subscribeToCourseERROR', error);

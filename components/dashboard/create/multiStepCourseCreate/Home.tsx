@@ -7,25 +7,9 @@ import StepOne from './steps/StepOne';
 import StepTwo from './steps/StepTwo';
 import StepThree from './steps/StepThree';
 import { MultipleFileUploadField } from '@/components/upload/MultiFileUploadField';
+import { UserContext } from '@/contexts/UserContext';
+import { useContext } from 'react';
 
-const initialValues = {
-    title: '',
-    subtitle: '',
-    language: "",
-    price: 0,
-    duration: '',
-    level: "",
-    time: "",
-    tutor: "",
-    tutorWho: "",
-    category: "",
-    framework: "",
-    relatedSkills: [""],
-    prerequisites: [""],
-    courseObjectives: [""],
-    syllabus: [{ topic: "", description: "", duration: "" }],
-    images: [""]
-}
 
 const courseInfoSchema = object({
     title: string().required().min(6),
@@ -65,9 +49,28 @@ const imageUpoadSchema = object().shape({
 })
 
 function Home() {
+    const userContext = useContext(UserContext)
+    const initialValues = {
+        title: '',
+        subtitle: '',
+        language: "",
+        price: 0,
+        duration: '',
+        level: "",
+        time: "",
+        tutor: userContext?.user?.attributes.name,
+        tutorWho: "",
+        category: "",
+        framework: "",
+        relatedSkills: [""],
+        prerequisites: [""],
+        courseObjectives: [""],
+        syllabus: [{ topic: "", description: "", duration: "" }],
+        images: [""]
+    }
     const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
 
-        if (values.images.length === 0) return
+        // if (values.images.length === 0) return
         try {
             //uploading the image to s3 one at a time with the file name as the key
             const imageKeys = await Promise.all(
@@ -83,11 +86,14 @@ function Home() {
                 authMode: "AMAZON_COGNITO_USER_POOLS",
             });
             if (res) {
+                console.log('coursecreationres', res);
+
 
                 // actions.resetForm()
 
             }
         } catch (error) {
+            console.log('coursecreationerror', error);
 
         }
 

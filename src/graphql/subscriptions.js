@@ -4,9 +4,10 @@
 export const onCreateUserCourses = /* GraphQL */ `
   subscription OnCreateUserCourses(
     $filter: ModelSubscriptionUserCoursesFilterInput
-    $username: String
+    $name: String
+    $tutor: String
   ) {
-    onCreateUserCourses(filter: $filter, username: $username) {
+    onCreateUserCourses(filter: $filter, name: $name, tutor: $tutor) {
       id
       userId
       courseId
@@ -15,6 +16,7 @@ export const onCreateUserCourses = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -51,16 +53,18 @@ export const onCreateUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      username
+      name
+      tutor
     }
   }
 `;
 export const onUpdateUserCourses = /* GraphQL */ `
   subscription OnUpdateUserCourses(
     $filter: ModelSubscriptionUserCoursesFilterInput
-    $username: String
+    $name: String
+    $tutor: String
   ) {
-    onUpdateUserCourses(filter: $filter, username: $username) {
+    onUpdateUserCourses(filter: $filter, name: $name, tutor: $tutor) {
       id
       userId
       courseId
@@ -69,6 +73,7 @@ export const onUpdateUserCourses = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -105,16 +110,18 @@ export const onUpdateUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      username
+      name
+      tutor
     }
   }
 `;
 export const onDeleteUserCourses = /* GraphQL */ `
   subscription OnDeleteUserCourses(
     $filter: ModelSubscriptionUserCoursesFilterInput
-    $username: String
+    $name: String
+    $tutor: String
   ) {
-    onDeleteUserCourses(filter: $filter, username: $username) {
+    onDeleteUserCourses(filter: $filter, name: $name, tutor: $tutor) {
       id
       userId
       courseId
@@ -123,6 +130,7 @@ export const onDeleteUserCourses = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -159,7 +167,8 @@ export const onDeleteUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      username
+      name
+      tutor
     }
   }
 `;

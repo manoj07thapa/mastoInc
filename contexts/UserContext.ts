@@ -1,4 +1,4 @@
-import { SetStateAction, createContext, Dispatch, ReactNode } from "react";
+import { SetStateAction, createContext, Dispatch } from "react";
 import { UserProp } from "@/types/types";
 
 type UserContextProps = {

@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { useCallback, useEffect, useState } from 'react';
 import CourseContainer from '@/components/course/CourseContainer';
 import { GetCourseQuery, Course } from '../../../../src/API';
+import { CourseType } from '../../../../types/amplifyCodegen/APITypes';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const SSR = withSSRContext();
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
 }
 
-const SingleCourse = ({ ssgCourse }: { ssgCourse: Course }) => {
+const SingleCourse = ({ ssgCourse }: { ssgCourse: CourseType }) => {
     const [courseImageUrl, setCourseImageUrl] = useState<string[] | []>([]);
 
     const fetchCourseImageUrl = useCallback(async () => {

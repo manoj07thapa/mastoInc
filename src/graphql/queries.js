@@ -8,6 +8,7 @@ export const getUser = /* GraphQL */ `
       username
       email
       phone_number
+      name
       enrolledCourses {
         items {
           id
@@ -15,7 +16,8 @@ export const getUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -36,6 +38,7 @@ export const listUsers = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -77,7 +80,8 @@ export const getCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          username
+          name
+          tutor
         }
         nextToken
       }
@@ -177,6 +181,7 @@ export const getUserCourses = /* GraphQL */ `
         username
         email
         phone_number
+        name
         enrolledCourses {
           nextToken
         }
@@ -213,7 +218,8 @@ export const getUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      username
+      name
+      tutor
     }
   }
 `;
@@ -233,6 +239,7 @@ export const listUserCourses = /* GraphQL */ `
           username
           email
           phone_number
+          name
           createdAt
           updatedAt
         }
@@ -258,7 +265,8 @@ export const listUserCourses = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        username
+        name
+        tutor
       }
       nextToken
     }
@@ -288,6 +296,7 @@ export const userCoursesByUserId = /* GraphQL */ `
           username
           email
           phone_number
+          name
           createdAt
           updatedAt
         }
@@ -313,7 +322,8 @@ export const userCoursesByUserId = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        username
+        name
+        tutor
       }
       nextToken
     }
@@ -343,6 +353,7 @@ export const userCoursesByCourseId = /* GraphQL */ `
           username
           email
           phone_number
+          name
           createdAt
           updatedAt
         }
@@ -368,7 +379,8 @@ export const userCoursesByCourseId = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        username
+        name
+        tutor
       }
       nextToken
     }

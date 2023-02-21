@@ -2,9 +2,10 @@ import { ChevronUpIcon } from '@heroicons/react/24/outline';
 import { SyllabusProps } from '../../types/types';
 import { Disclosure, Transition } from "@headlessui/react";
 import { Syllabus } from '@/src/API';
+import { SyllabusType } from '../../types/amplifyCodegen/APITypes';
 
 
-const Syllabuses = ({ syllabus }: { syllabus: Syllabus[] }) => {
+const Syllabuses = ({ syllabus }: { syllabus: SyllabusType[] }) => {
     return (
         <div className="w-full mt-2">
             <h3 className="text-lg font-semibold tracking-wide">Course Content</h3>

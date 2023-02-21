@@ -7,12 +7,14 @@ export type CreateUserInput = {
   username: string,
   email: string,
   phone_number: string,
+  name: string,
 };
 
 export type ModelUserConditionInput = {
   username?: ModelStringInput | null,
   email?: ModelStringInput | null,
   phone_number?: ModelStringInput | null,
+  name?: ModelStringInput | null,
   and?: Array<ModelUserConditionInput | null> | null,
   or?: Array<ModelUserConditionInput | null> | null,
   not?: ModelUserConditionInput | null,
@@ -64,6 +66,7 @@ export type User = {
   username: string,
   email: string,
   phone_number: string,
+  name: string,
   enrolledCourses?: ModelUserCoursesConnection | null,
   createdAt: string,
   updatedAt: string,
@@ -84,7 +87,8 @@ export type UserCourses = {
   course: Course,
   createdAt: string,
   updatedAt: string,
-  username?: string | null,
+  name?: string | null,
+  tutor?: string | null,
 };
 
 export type Course = {
@@ -123,6 +127,7 @@ export type UpdateUserInput = {
   username?: string | null,
   email?: string | null,
   phone_number?: string | null,
+  name?: string | null,
 };
 
 export type DeleteUserInput = {
@@ -222,6 +227,7 @@ export type CreateResourceInput = {
   page: string,
   section: string,
   s3ImageKeys?: Array<string | null> | null,
+  images?: File[] | null
 };
 
 export type ModelResourceConditionInput = {
@@ -314,6 +320,7 @@ export type ModelUserFilterInput = {
   username?: ModelStringInput | null,
   email?: ModelStringInput | null,
   phone_number?: ModelStringInput | null,
+  name?: ModelStringInput | null,
   and?: Array<ModelUserFilterInput | null> | null,
   or?: Array<ModelUserFilterInput | null> | null,
   not?: ModelUserFilterInput | null,
@@ -424,6 +431,7 @@ export type CreateUserMutation = {
     username: string,
     email: string,
     phone_number: string,
+    name: string,
     enrolledCourses?: {
       __typename: "ModelUserCoursesConnection",
       nextToken?: string | null,
@@ -445,6 +453,7 @@ export type UpdateUserMutation = {
     username: string,
     email: string,
     phone_number: string,
+    name: string,
     enrolledCourses?: {
       __typename: "ModelUserCoursesConnection",
       nextToken?: string | null,
@@ -466,6 +475,7 @@ export type DeleteUserMutation = {
     username: string,
     email: string,
     phone_number: string,
+    name: string,
     enrolledCourses?: {
       __typename: "ModelUserCoursesConnection",
       nextToken?: string | null,
@@ -675,6 +685,7 @@ export type CreateUserCoursesMutation = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -701,7 +712,8 @@ export type CreateUserCoursesMutation = {
     },
     createdAt: string,
     updatedAt: string,
-    username?: string | null,
+    name?: string | null,
+    tutor?: string | null,
   } | null,
 };
 
@@ -722,6 +734,7 @@ export type UpdateUserCoursesMutation = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -748,7 +761,8 @@ export type UpdateUserCoursesMutation = {
     },
     createdAt: string,
     updatedAt: string,
-    username?: string | null,
+    name?: string | null,
+    tutor?: string | null,
   } | null,
 };
 
@@ -769,6 +783,7 @@ export type DeleteUserCoursesMutation = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -795,7 +810,8 @@ export type DeleteUserCoursesMutation = {
     },
     createdAt: string,
     updatedAt: string,
-    username?: string | null,
+    name?: string | null,
+    tutor?: string | null,
   } | null,
 };
 
@@ -810,6 +826,7 @@ export type GetUserQuery = {
     username: string,
     email: string,
     phone_number: string,
+    name: string,
     enrolledCourses?: {
       __typename: "ModelUserCoursesConnection",
       items: Array<{
@@ -840,6 +857,7 @@ export type ListUsersQuery = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     } | null>,
@@ -983,6 +1001,7 @@ export type GetUserCoursesQuery = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -1009,7 +1028,8 @@ export type GetUserCoursesQuery = {
     },
     createdAt: string,
     updatedAt: string,
-    username?: string | null,
+    name?: string | null,
+    tutor?: string | null,
   } | null,
 };
 
@@ -1029,7 +1049,8 @@ export type ListUserCoursesQuery = {
       courseId: string,
       createdAt: string,
       updatedAt: string,
-      username?: string | null,
+      name?: string | null,
+      tutor?: string | null,
     } | null>,
     nextToken?: string | null,
   } | null,
@@ -1053,7 +1074,8 @@ export type UserCoursesByUserIdQuery = {
       courseId: string,
       createdAt: string,
       updatedAt: string,
-      username?: string | null,
+      name?: string | null,
+      tutor?: string | null,
     } | null>,
     nextToken?: string | null,
   } | null,
@@ -1077,7 +1099,8 @@ export type UserCoursesByCourseIdQuery = {
       courseId: string,
       createdAt: string,
       updatedAt: string,
-      username?: string | null,
+      name?: string | null,
+      tutor?: string | null,
     } | null>,
     nextToken?: string | null,
   } | null,
@@ -1085,7 +1108,8 @@ export type UserCoursesByCourseIdQuery = {
 
 export type OnCreateUserCoursesSubscriptionVariables = {
   filter?: ModelSubscriptionUserCoursesFilterInput | null,
-  username?: string | null,
+  name?: string | null,
+  tutor?: string | null,
 };
 
 export type OnCreateUserCoursesSubscription = {
@@ -1100,6 +1124,7 @@ export type OnCreateUserCoursesSubscription = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -1126,13 +1151,15 @@ export type OnCreateUserCoursesSubscription = {
     },
     createdAt: string,
     updatedAt: string,
-    username?: string | null,
+    name?: string | null,
+    tutor?: string | null,
   } | null,
 };
 
 export type OnUpdateUserCoursesSubscriptionVariables = {
   filter?: ModelSubscriptionUserCoursesFilterInput | null,
-  username?: string | null,
+  name?: string | null,
+  tutor?: string | null,
 };
 
 export type OnUpdateUserCoursesSubscription = {
@@ -1147,6 +1174,7 @@ export type OnUpdateUserCoursesSubscription = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -1173,13 +1201,15 @@ export type OnUpdateUserCoursesSubscription = {
     },
     createdAt: string,
     updatedAt: string,
-    username?: string | null,
+    name?: string | null,
+    tutor?: string | null,
   } | null,
 };
 
 export type OnDeleteUserCoursesSubscriptionVariables = {
   filter?: ModelSubscriptionUserCoursesFilterInput | null,
-  username?: string | null,
+  name?: string | null,
+  tutor?: string | null,
 };
 
 export type OnDeleteUserCoursesSubscription = {
@@ -1194,6 +1224,7 @@ export type OnDeleteUserCoursesSubscription = {
       username: string,
       email: string,
       phone_number: string,
+      name: string,
       createdAt: string,
       updatedAt: string,
     },
@@ -1220,6 +1251,7 @@ export type OnDeleteUserCoursesSubscription = {
     },
     createdAt: string,
     updatedAt: string,
-    username?: string | null,
+    name?: string | null,
+    tutor?: string | null,
   } | null,
 };

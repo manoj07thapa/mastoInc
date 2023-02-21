@@ -33,7 +33,9 @@
       "phone_number"
     ],
     "userpoolClientReadAttributes": [
-      "email"
+      "email",
+      "name",
+      "phone_number"
     ],
     "userpoolClientLambdaRole": "mastoi83a449cd_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": true,

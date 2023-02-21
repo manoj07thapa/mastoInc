@@ -15,6 +15,7 @@ type SidebarLayoutProps = {
 const SidebarLayout = ({ children }: SidebarLayoutProps) => {
     const router = useRouter();
     const userContext = useContext(UserContext);
+
     const group = userContext?.user?.signInUserSession?.accessToken?.payload["cognito:groups"];
 
     return (
@@ -268,7 +269,7 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                                                     } md:hover:text-slate-200 md:hover:bg-indigo-700 py-3 px-2`}
                                                             >
                                                                 <Link
-                                                                    href={`/dashboard/${userContext?.user?.username}/courses`}
+                                                                    href={`/dashboard/teacher/${userContext.user?.attributes.name}/courses`}
                                                                 >
                                                                     View courses
                                                                 </Link>

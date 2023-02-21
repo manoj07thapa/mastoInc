@@ -30,7 +30,7 @@
         },
         "mastoinc20083a449cd83a449cdPostConfirmation": {
           "deploymentBucketName": "amplify-mastoinc200-dev-195827-deployment",
-          "s3Key": "amplify-builds/mastoinc20083a449cd83a449cdPostConfirmation-616d5346394637424d44-build.zip"
+          "s3Key": "amplify-builds/mastoinc20083a449cd83a449cdPostConfirmation-52616c425a574b394d30-build.zip"
         }
       },
       "api": {

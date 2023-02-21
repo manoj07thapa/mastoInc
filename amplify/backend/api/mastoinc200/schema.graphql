@@ -1,3 +1,4 @@
+
 type User
   @model(subscriptions: null)
   @auth(
@@ -6,15 +7,18 @@ type User
       { allow: groups, groups: ["teacher"] }
       {
         allow: owner
-        ownerField: "username"
+        ownerField: "name"
         operations: [read]
-      }
+      } 
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
     ]
   ) {
   id: ID!
   username: String!
   email: String!
   phone_number: String!
+  name: String!
   enrolledCourses: [Course] @manyToMany(relationName: "UserCourses")
 }
 
@@ -25,7 +29,8 @@ type Course
       { allow: groups, groups: ["admin"] }
       { allow: groups, groups: ["teacher"], operations: [read, create, update] }
       { allow: private, operations: [read] }
-      { allow: public, operations: [read]}
+      { allow: public, operations: [read] }
+      { allow: owner, ownerField: "tutor", operations: [read, create] }
     ]
   ) {
   id: ID!
