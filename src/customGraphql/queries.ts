@@ -85,39 +85,34 @@ export const getCourseWithEnrollees = /* GraphQL */ `
   query GetCourse($id: ID!) {
     getCourse(id: $id) {
       id
-      title
-      subtitle
-      category
-      files
-      price
-      language
-      tutor
-      tutorWho
-      relatedSkills
-      youLearn
-      duration
-      framework
-      reqKnowledge
-      level
-      time
-      courseContent {
-        topic
-        description
+        title
+        subtitle
+        category
+        images
+        price
+        language
+        tutor
+        tutorWho
+        relatedSkills
+        courseObjectives
         duration
-      }
+        framework
+        prerequisites
+        level
+        time
+        syllabus {
+          topic
+          description
+          duration
+        }
       enrollees {
         items {
-          id
-          userID
-          courseID
-          createdAt
-          updatedAt
-          username
-          tutor
           user {
+            id
             email
             phone_number
-            username
+            name
+            
           }
         }
         nextToken

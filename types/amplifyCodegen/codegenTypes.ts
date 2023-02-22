@@ -896,6 +896,19 @@ export type GetCourseQuery = {
         }> | null,
         enrollees?: {
             __typename: "ModelUserCoursesConnection",
+            items: Array<{
+                user: {
+                    __typename: "User",
+                    id: string,
+                    username: string,
+                    email: string,
+                    phone_number: string,
+                    name: string,
+                    createdAt: string,
+                    updatedAt: string,
+                }
+
+            } | null>,
             nextToken?: string | null,
         } | null,
         createdAt: string,
