@@ -194,9 +194,9 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                                 </Disclosure>
                                             )}
                                     </div>
-                                    <div>
+                                    {/* <div>
 
-                                        {(group && group.includes("admin")) && (
+                                        {(group?.includes("admin") || group?.includes("teacher")) && (
                                             <Disclosure
                                                 as="div"
                                                 className="pb-4 border-b border-gray-800 md:border-none"
@@ -235,9 +235,9 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                                 )}
                                             </Disclosure>
                                         )}
-                                    </div>
+                                    </div> */}
                                     <div>
-                                        {(group && group.includes("teacher")) && (
+                                        {(group?.includes("admin") || group?.includes("teacher")) && (
                                             <Disclosure
                                                 as="div"
                                                 className="pb-4 border-b border-gray-800 md:border-none"
@@ -269,7 +269,7 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                                                     } md:hover:text-slate-200 md:hover:bg-indigo-700 py-3 px-2`}
                                                             >
                                                                 <Link
-                                                                    href={`/dashboard/teacher/${userContext.user?.attributes.name}/courses`}
+                                                                    href={`/dashboard/teacher/${userContext?.user?.attributes.name}/courses`}
                                                                 >
                                                                     View courses
                                                                 </Link>

@@ -20,6 +20,8 @@ export function FormikStepper({ children, ...props }: FormikStepperProps) {
     }
 
     const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
+        console.log('coursevalues', values);
+
 
         if (isLastStep()) {
             const res = await props.onSubmit(values, actions);

@@ -32,28 +32,40 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const SSR = withSSRContext();
-
-    const { data } = (await SSR.API.graphql({
-        query: getCourse,
-        variables: {
-            id: params?.id
-        },
-    })) as { data: GetCourseQuery };
-    if (!data) {
-        return {
-            notFound: true,
+    try {
+        const { data } = (await SSR.API.graphql({
+            query: getCourse,
+            variables: {
+                id: params?.id
+            },
+        })) as { data: GetCourseQuery };
+        if (!data) {
+            return {
+                notFound: true,
+            }
         }
+        const ssgCourse = data.getCourse
+        return {
+            props: {
+                ssgCourse
+            },
+            revalidate: 100,
+        };
+
+    } catch (error) {
+        return {
+            props: {
+                ssgCourse: []
+            }
+
+        };
     }
-    const ssgCourse = data.getCourse
-    return {
-        props: {
-            ssgCourse
-        },
-        revalidate: 100,
-    };
+
+
 }
 
 const SingleCourse = ({ ssgCourse }: { ssgCourse: CourseType }) => {
+    const router = useRouter()
     const [courseImageUrl, setCourseImageUrl] = useState<string[] | []>([]);
 
     const fetchCourseImageUrl = useCallback(async () => {
@@ -75,9 +87,8 @@ const SingleCourse = ({ ssgCourse }: { ssgCourse: CourseType }) => {
 
     useEffect(() => {
         fetchCourseImageUrl();
-    }, [fetchCourseImageUrl]);
+    }, [fetchCourseImageUrl, router, ssgCourse]);
 
-    const router = useRouter()
     if (router.isFallback) {
         return (
             <div >

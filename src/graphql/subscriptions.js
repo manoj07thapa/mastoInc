@@ -4,10 +4,14 @@
 export const onCreateUserCourses = /* GraphQL */ `
   subscription OnCreateUserCourses(
     $filter: ModelSubscriptionUserCoursesFilterInput
-    $name: String
-    $tutor: String
+    $email: String
+    $ownerEmail: String
   ) {
-    onCreateUserCourses(filter: $filter, name: $name, tutor: $tutor) {
+    onCreateUserCourses(
+      filter: $filter
+      email: $email
+      ownerEmail: $ownerEmail
+    ) {
       id
       userId
       courseId
@@ -32,6 +36,7 @@ export const onCreateUserCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -53,18 +58,22 @@ export const onCreateUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      name
-      tutor
+      email
+      ownerEmail
     }
   }
 `;
 export const onUpdateUserCourses = /* GraphQL */ `
   subscription OnUpdateUserCourses(
     $filter: ModelSubscriptionUserCoursesFilterInput
-    $name: String
-    $tutor: String
+    $email: String
+    $ownerEmail: String
   ) {
-    onUpdateUserCourses(filter: $filter, name: $name, tutor: $tutor) {
+    onUpdateUserCourses(
+      filter: $filter
+      email: $email
+      ownerEmail: $ownerEmail
+    ) {
       id
       userId
       courseId
@@ -89,6 +98,7 @@ export const onUpdateUserCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -110,18 +120,22 @@ export const onUpdateUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      name
-      tutor
+      email
+      ownerEmail
     }
   }
 `;
 export const onDeleteUserCourses = /* GraphQL */ `
   subscription OnDeleteUserCourses(
     $filter: ModelSubscriptionUserCoursesFilterInput
-    $name: String
-    $tutor: String
+    $email: String
+    $ownerEmail: String
   ) {
-    onDeleteUserCourses(filter: $filter, name: $name, tutor: $tutor) {
+    onDeleteUserCourses(
+      filter: $filter
+      email: $email
+      ownerEmail: $ownerEmail
+    ) {
       id
       userId
       courseId
@@ -146,6 +160,7 @@ export const onDeleteUserCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -167,8 +182,8 @@ export const onDeleteUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      name
-      tutor
+      email
+      ownerEmail
     }
   }
 `;

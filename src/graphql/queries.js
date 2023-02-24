@@ -16,8 +16,8 @@ export const getUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -60,6 +60,7 @@ export const getCourse = /* GraphQL */ `
       price
       language
       tutor
+      ownerEmail
       tutorWho
       relatedSkills
       courseObjectives
@@ -80,8 +81,8 @@ export const getCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -106,6 +107,7 @@ export const listCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -197,6 +199,7 @@ export const getUserCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -218,8 +221,8 @@ export const getUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      name
-      tutor
+      email
+      ownerEmail
     }
   }
 `;
@@ -252,6 +255,7 @@ export const listUserCourses = /* GraphQL */ `
           price
           language
           tutor
+          ownerEmail
           tutorWho
           relatedSkills
           courseObjectives
@@ -265,8 +269,8 @@ export const listUserCourses = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        name
-        tutor
+        email
+        ownerEmail
       }
       nextToken
     }
@@ -309,6 +313,7 @@ export const userCoursesByUserId = /* GraphQL */ `
           price
           language
           tutor
+          ownerEmail
           tutorWho
           relatedSkills
           courseObjectives
@@ -322,8 +327,8 @@ export const userCoursesByUserId = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        name
-        tutor
+        email
+        ownerEmail
       }
       nextToken
     }
@@ -366,6 +371,7 @@ export const userCoursesByCourseId = /* GraphQL */ `
           price
           language
           tutor
+          ownerEmail
           tutorWho
           relatedSkills
           courseObjectives
@@ -379,8 +385,8 @@ export const userCoursesByCourseId = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        name
-        tutor
+        email
+        ownerEmail
       }
       nextToken
     }

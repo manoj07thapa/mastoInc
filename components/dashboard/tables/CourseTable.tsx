@@ -1,5 +1,3 @@
-
-
 import { UserContext } from "@/contexts/UserContext";
 import { ListCoursesQuery } from "@/types/amplifyCodegen/codegenTypes";
 import Link from "next/link";
@@ -14,7 +12,7 @@ const columns = [
 ];
 
 
-const CourseTable = ({ teacherCourses }: { teacherCourses: ListCoursesQuery }) => {
+const CourseTable = ({ courses }: { courses: ListCoursesQuery }) => {
     const userContext = useContext(UserContext);
 
     return (
@@ -49,7 +47,7 @@ const CourseTable = ({ teacherCourses }: { teacherCourses: ListCoursesQuery }) =
                             </td>
                         </tr>
                     ))} */}
-                    {teacherCourses.listCourses?.items.map(item => (
+                    {courses.listCourses?.items.map(item => (
                         <tr key={item?.id} className="text-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-500 dark:hover:bg-gray-600">
                             <td className="px-6 py-4">{item?.title}</td>
                             <td className="px-6 py-4">{item?.category}</td>

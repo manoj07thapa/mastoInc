@@ -1,7 +1,7 @@
 import { FormikConfig, FormikValues, FormikHelpers } from 'formik';
 import { array, number, object, string, } from 'yup';
 import { Storage, API } from "aws-amplify";
-import { createCourse } from '../../../../src/graphql/mutations'
+import { createCourse, updateCourse } from '../../../../src/graphql/mutations'
 import { FormikStepper } from "./FormikStepper";
 import StepOne from './steps/StepOne';
 import StepTwo from './steps/StepTwo';
@@ -9,6 +9,8 @@ import StepThree from './steps/StepThree';
 import { MultipleFileUploadField } from '@/components/upload/MultiFileUploadField';
 import { UserContext } from '@/contexts/UserContext';
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
+import { GetCourseQuery } from '@/types/amplifyCodegen/codegenTypes';
 
 
 const courseInfoSchema = object({
@@ -20,6 +22,7 @@ const courseInfoSchema = object({
     time: string().required(),
     level: string().required(),
     tutor: string().required(),
+    ownerEmail: string().email().required(),
     tutorWho: string().required(),
     category: string().required(),
     framework: string().required()
@@ -47,30 +50,69 @@ const imageUpoadSchema = object().shape({
     images: array().of(string().required())
 
 })
+type HomeProps = {
+    course?: GetCourseQuery,
+    closeModal?: () => void
+}
 
-function Home() {
+function Home({ course, closeModal }: HomeProps) {
     const userContext = useContext(UserContext)
-    const initialValues = {
-        title: '',
-        subtitle: '',
-        language: "",
-        price: 0,
-        duration: '',
-        level: "",
-        time: "",
-        tutor: userContext?.user?.attributes.name,
-        tutorWho: "",
-        category: "",
-        framework: "",
-        relatedSkills: [""],
-        prerequisites: [""],
-        courseObjectives: [""],
-        syllabus: [{ topic: "", description: "", duration: "" }],
-        images: [""]
-    }
-    const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
+    const { query } = useRouter()
+    console.log('QUERYROUTER', query);
+    const image = course?.getCourse?.images
+    console.log('courseimage', image);
 
-        // if (values.images.length === 0) return
+
+    const initialValues = {
+        title: course ? course.getCourse?.title : "",
+        subtitle: course ? course.getCourse?.subtitle : "",
+        language: course ? course.getCourse?.language : "",
+        price: course ? course.getCourse?.price : 0,
+        duration: course ? course.getCourse?.duration : "",
+        level: course ? course.getCourse?.level : "",
+        time: course ? course.getCourse?.time : "",
+        tutor: course ? course.getCourse?.tutor : "",
+        ownerEmail: userContext?.user?.attributes.email,
+        tutorWho: course ? course.getCourse?.tutorWho : "",
+        category: course ? course.getCourse?.category : "",
+        framework: course ? course.getCourse?.framework : "",
+        relatedSkills: course ? course.getCourse?.relatedSkills : [""],
+        prerequisites: course ? course.getCourse?.prerequisites : [""],
+        courseObjectives: course ? course.getCourse?.courseObjectives : [""],
+        syllabus: course ? course.getCourse?.syllabus : [{ topic: "", description: "", duration: "" }],
+        images: course ? course.getCourse?.images : [""]
+    }
+
+    const editCourse = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
+        console.log('EDITEDVALUES', values);
+        values.id = course?.getCourse?.id
+        try {
+            //uploading the image to s3 one at a time with the file name as the key
+            const imageKeys = await Promise.all(
+                values.images.map(async (file: File) => {
+                    const key = await Storage.put(file.name, file);
+                    return key.key;
+                })
+            );
+            values.images = imageKeys;
+            const res = await API.graphql({
+                query: updateCourse,
+                variables: { input: values },
+                authMode: "AMAZON_COGNITO_USER_POOLS",
+            });
+            if (res && closeModal) {
+                console.log('coursEditres', res);
+                closeModal()
+                // actions.resetForm()
+            }
+        } catch (error) {
+            console.log('COURSEEDITERROR', error);
+
+        }
+
+    }
+
+    const publishCourse = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
         try {
             //uploading the image to s3 one at a time with the file name as the key
             const imageKeys = await Promise.all(
@@ -87,10 +129,7 @@ function Home() {
             });
             if (res) {
                 console.log('coursecreationres', res);
-
-
                 // actions.resetForm()
-
             }
         } catch (error) {
             console.log('coursecreationerror', error);
@@ -99,12 +138,48 @@ function Home() {
 
     }
 
+    const handleSubmit = async (values: FormikValues, actions: FormikHelpers<FormikValues>) => {
+        if (course) {
+            await editCourse(values, actions)
+        } else {
+            await publishCourse(values, actions)
+
+        }
+
+
+        // if (values.images.length === 0) return
+        // try {
+        //     //uploading the image to s3 one at a time with the file name as the key
+        //     const imageKeys = await Promise.all(
+        //         values.images.map(async (file: File) => {
+        //             const key = await Storage.put(file.name, file);
+        //             return key.key;
+        //         })
+        //     );
+        //     values.images = imageKeys;
+        //     const res = await API.graphql({
+        //         query: createCourse,
+        //         variables: { input: values },
+        //         authMode: "AMAZON_COGNITO_USER_POOLS",
+        //     });
+        //     if (res) {
+        //         console.log('coursecreationres', res);
+
+
+        //         // actions.resetForm()
+
+        //     }
+        // } catch (error) {
+        //     console.log('coursecreationerror', error);
+
+        // }
+
+    }
+
     return (
         <FormikStepper
             initialValues={initialValues}
             onSubmit={handleSubmit}
-
-
         >
             {/**step1 */}
             <FormikStep label="Course Info" validationSchema={courseInfoSchema} >

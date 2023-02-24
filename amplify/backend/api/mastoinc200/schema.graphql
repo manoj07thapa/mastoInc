@@ -7,7 +7,7 @@ type User
       { allow: groups, groups: ["teacher"] }
       {
         allow: owner
-        ownerField: "name"
+        ownerField: "email"
         operations: [read]
       } 
       { allow: private, operations: [read] }
@@ -30,7 +30,7 @@ type Course
       { allow: groups, groups: ["teacher"], operations: [read, create, update] }
       { allow: private, operations: [read] }
       { allow: public, operations: [read] }
-      { allow: owner, ownerField: "tutor", operations: [read, create] }
+      { allow: owner, ownerField: "ownerEmail", operations: [read, create] }
     ]
   ) {
   id: ID!
@@ -41,6 +41,7 @@ type Course
   price: Float!
   language: String!
   tutor: String!
+  ownerEmail: String!
   tutorWho: String!
   relatedSkills: [String!]
   courseObjectives: [String!]

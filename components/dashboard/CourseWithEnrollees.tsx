@@ -20,11 +20,11 @@ export default function CourseTabs({ courseWithEnrollees, removeUserFromCourse }
 
 
     return (
-        <div className=" px-2 py-16 sm:px-0">
+        <div className="px-2 py-16 sm:px-0">
             <Tab.Group>
                 <div
                 >
-                    <Tab.List className="flex space-x-1  bg-gray-900 p-1">
+                    <Tab.List className="flex p-1 space-x-1 bg-gray-900">
                         {tabList.map((category) => (
                             <Tab
                                 key={category}
@@ -46,7 +46,7 @@ export default function CourseTabs({ courseWithEnrollees, removeUserFromCourse }
                     <div
                     >
                         <Tab.Panel>
-                            {course && <CourseDetail course={course} />}
+                            {course && <CourseDetail course={courseWithEnrollees} />}
                         </Tab.Panel>
                         <Tab.Panel>
                             {/**insted of passing whole object try and pass the enrollee array */}

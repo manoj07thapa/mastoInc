@@ -19,8 +19,8 @@ export const createUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -47,8 +47,8 @@ export const updateUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -75,8 +75,8 @@ export const deleteUser = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -99,6 +99,7 @@ export const createCourse = /* GraphQL */ `
       price
       language
       tutor
+      ownerEmail
       tutorWho
       relatedSkills
       courseObjectives
@@ -119,8 +120,8 @@ export const createCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -143,6 +144,7 @@ export const updateCourse = /* GraphQL */ `
       price
       language
       tutor
+      ownerEmail
       tutorWho
       relatedSkills
       courseObjectives
@@ -163,8 +165,8 @@ export const updateCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -187,6 +189,7 @@ export const deleteCourse = /* GraphQL */ `
       price
       language
       tutor
+      ownerEmail
       tutorWho
       relatedSkills
       courseObjectives
@@ -207,8 +210,8 @@ export const deleteCourse = /* GraphQL */ `
           courseId
           createdAt
           updatedAt
-          name
-          tutor
+          email
+          ownerEmail
         }
         nextToken
       }
@@ -307,6 +310,7 @@ export const createUserCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -328,8 +332,8 @@ export const createUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      name
-      tutor
+      email
+      ownerEmail
     }
   }
 `;
@@ -363,6 +367,7 @@ export const updateUserCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -384,8 +389,8 @@ export const updateUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      name
-      tutor
+      email
+      ownerEmail
     }
   }
 `;
@@ -419,6 +424,7 @@ export const deleteUserCourses = /* GraphQL */ `
         price
         language
         tutor
+        ownerEmail
         tutorWho
         relatedSkills
         courseObjectives
@@ -440,8 +446,8 @@ export const deleteUserCourses = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      name
-      tutor
+      email
+      ownerEmail
     }
   }
 `;
