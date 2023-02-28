@@ -3,6 +3,7 @@ import React, { Fragment, useContext } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { Bars3CenterLeftIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { courses } from "./headerData/header/navData";
@@ -10,6 +11,7 @@ import UserMenu from "./UserMenu";
 import { Auth } from "aws-amplify";
 import { UserContext } from "../../contexts/UserContext";
 import ThemeSwitcher from "./ThemeSwitcher";
+import MastoIncLogo from '@/public/mastoinc-high-resolution-logo-black-on-transparent-background.png'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
@@ -27,7 +29,7 @@ export default function Navbar() {
             close()
 
         } catch (error) {
-
+            console.log('Signouterror', error);
 
         }
 
@@ -38,8 +40,15 @@ export default function Navbar() {
             <div className="px-4 mx-auto max-w-7xl sm:px-6 ">
                 <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
-                        <Link href="/" className="text-xl font-extrabold tracking-wider">
-                            MastoInc
+                        <Link href="/" className="text-xl font-extrabold tracking-wider text-sky-600">
+                            <Image
+                                src={MastoIncLogo}
+                                alt="mastoIncLogo"
+                                height={50}
+                                width={80}
+                                priority
+                                className=""
+                            />
                         </Link>
                     </div>
 

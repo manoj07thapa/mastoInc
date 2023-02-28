@@ -43,6 +43,7 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                             <Disclosure
                                                 className="pb-4 border-b border-gray-800 md:border-none"
                                                 as="div"
+                                                defaultOpen={true}
                                             >
                                                 {({ open }) => (
                                                     <>
@@ -63,15 +64,20 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                                             className="pl-2 mt-2 space-y-4 text-sm md:pl-4 md:border-l md:border-gray-800 md:text-gray-400"
                                                         >
                                                             <Disclosure.Panel className=" md:hover:text-gray-300">
-                                                                Your Information
+                                                                <Link href={`/dashboard/student/${userContext.user?.attributes.name}`}>
+                                                                    Home
+                                                                </Link>
+
                                                             </Disclosure.Panel>
                                                             <Disclosure.Panel className=" md:hover:text-gray-300">
-                                                                <Link href={`/dashboard/profile/enrolledCourses`}>
+                                                                <Link href={`/dashboard/student/${userContext.user?.attributes.name}/courses`}>
                                                                     Enrolled Course
                                                                 </Link>
                                                             </Disclosure.Panel>
                                                             <Disclosure.Panel className=" md:hover:text-gray-300">
-                                                                Assignments
+                                                                <Link href={`/dashboard/student/${userContext.user?.attributes.name}/assignments`}>
+                                                                    Assignments
+                                                                </Link>
                                                             </Disclosure.Panel>
                                                         </Transition>
                                                     </>
@@ -194,48 +200,6 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                                 </Disclosure>
                                             )}
                                     </div>
-                                    {/* <div>
-
-                                        {(group?.includes("admin") || group?.includes("teacher")) && (
-                                            <Disclosure
-                                                as="div"
-                                                className="pb-4 border-b border-gray-800 md:border-none"
-                                                defaultOpen={true}
-                                            >
-                                                {({ open }) => (
-                                                    <>
-                                                        <Disclosure.Button className="flex justify-between w-full py-2 tracking-wide text-left transition duration-150 ease-in-out rounded-md text-md">
-                                                            <span>Courses</span>
-                                                            <ChevronUpIcon
-                                                                className={`${open ? "rotate-180 transform" : ""
-                                                                    } h-5 w-5 `}
-                                                            />
-                                                        </Disclosure.Button>
-                                                        <Transition
-                                                            enter="transition duration-100 ease-out"
-                                                            enterFrom="transform scale-95 opacity-0"
-                                                            enterTo="transform scale-100 opacity-100"
-                                                            leave="transition duration-75 ease-out"
-                                                            leaveFrom="transform scale-100 opacity-100"
-                                                            leaveTo="transform scale-95 opacity-0"
-                                                            className="pl-2 mt-2 space-y-4 text-sm md:pl-4 md:border-l md:border-gray-800 md:text-gray-400 "
-                                                        >
-                                                            <Disclosure.Panel
-                                                                className={`${router.pathname === "/dashboard/viewCourses"
-                                                                    ? "md:text-indigo-400 font-bold"
-                                                                    : ""
-                                                                    } md:hover:text-gray-300`}
-                                                            >
-                                                                <Link href="/dashboard/viewCourses">
-                                                                    View courses
-                                                                </Link>
-                                                            </Disclosure.Panel>
-                                                        </Transition>
-                                                    </>
-                                                )}
-                                            </Disclosure>
-                                        )}
-                                    </div> */}
                                     <div>
                                         {(group?.includes("admin") || group?.includes("teacher")) && (
                                             <Disclosure
@@ -310,7 +274,7 @@ const SidebarLayout = ({ children }: SidebarLayoutProps) => {
                                                                     : ""
                                                                     } md:hover:text-gray-300`}
                                                             >
-                                                                <Link href="/dashboard/viewUsers">
+                                                                <Link href="/dashboard/admin/users">
                                                                     View Users
                                                                 </Link>
                                                             </Disclosure.Panel>

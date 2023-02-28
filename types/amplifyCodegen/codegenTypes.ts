@@ -2,6 +2,7 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
+
 export type CreateUserInput = {
     id?: string | null,
     username: string,
@@ -831,6 +832,34 @@ export type GetUserQuery = {
             __typename: "ModelUserCoursesConnection",
             items: Array<{
                 __typename: "Course",
+                courseId: string,
+                userId: string,
+                id: string,
+            } | null>,
+            nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+    } | null,
+};
+
+//custom type made my manoj thapa
+export type GetUserWithEnrolledCourseQuery = {
+    getUser?: {
+        __typename: "User",
+        id: string,
+        username: string,
+        email: string,
+        phone_number: string,
+        name: string,
+        enrolledCourses?: {
+            __typename: "ModelUserCoursesConnection",
+            items: Array<{
+                __typename: "Course",
+                course: {
+                    title: string,
+                    category: string
+                }
                 courseId: string,
                 userId: string,
                 id: string,
